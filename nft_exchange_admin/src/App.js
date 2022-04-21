@@ -11,6 +11,7 @@ function App() {
     for (let j = 0; j < arr.nft.length; j++) {
       att = JSON.parse(arr.nft[j].tokenURI).attributes;
       for (let i = 0; i < att.length; i++) {
+<<<<<<< HEAD
         var traits = att[i].trait_type
         if (obj[traits] === undefined) {
           obj[traits] = []
@@ -18,6 +19,17 @@ function App() {
         var found = (obj[traits]).includes(att[i].value);
         if (!found) {
           obj[traits].push(att[i].value)
+=======
+        if (obj[att[i]["trait_type"]] === undefined) {
+          var t = new Array();
+          obj[att[i]["trait_type"]] = t;
+
+          t.push(att[i]["value"]);
+        } else {
+          if (!obj[att[i]["trait_type"]].includes(att[i]["trait_type"])) {
+            obj[att[i]["trait_type"]].push(att[i]["trait_type"]);
+          }
+>>>>>>> cde0df483b2eb054f6227ba8fe1a43cc1ae15db0
         }
       }
     }
@@ -38,7 +50,11 @@ function App() {
       });
   }, []);
 
-  return <div className="App"></div>;
+  return <div className="App">
+
+
+    
+  </div>;
 }
 
 export default App;
