@@ -1,0 +1,48 @@
+.banner {
+  width: 100%;
+}
+
+.banner > img {
+  width: 100%;
+  max-height: 230px;
+  z-index: -1;
+}
+
+.profile_img_div {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  text-align: center;
+  margin-top: -80px;
+
+  border: 10px solid red;
+  background-color: white;
+  border: 10px solid white;
+  margin: auto;
+}
+.profile_img_div > img {
+  border: 6px solid white;
+  text-align: center;
+  margin-top: -80px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+
+.cards {
+  text-align: center;
+
+  width: 500px;
+  margin: 20px;
+}
+.cards > div {
+  border: 2px solid red;
+}
+
+.profileDetail {
+  margin: auto;
+  margin-top: -100px;
+  border: 2px solid red;
+  align-items: center;
+  text-align: center;
+}

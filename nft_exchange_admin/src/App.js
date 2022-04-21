@@ -29,6 +29,21 @@ function App() {
     setArr1(arr);
   }
 
+  // fetch("http://localhost:1234/", {
+  //       method: "POST",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(
+  //         req.body),
+  //     })
+  //       .then((res) => res.json())
+  //       .then((res) => {
+  //         console.log(res, " I am a post request response");
+  //
+  //      });
+
   useEffect(() => {
     fetch(
       "http://127.0.0.1:1234/nft/single/0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB"
@@ -43,11 +58,7 @@ function App() {
     console.log(obj);
   }, []);
 
-  return <div className="App">
-
-
-    
-  </div>;
+  return <div className="App"></div>;
 }
 
 export default App;
