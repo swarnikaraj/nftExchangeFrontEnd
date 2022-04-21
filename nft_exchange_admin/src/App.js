@@ -11,7 +11,6 @@ function App() {
     for (let j = 0; j < arr.nft.length; j++) {
       att = JSON.parse(arr.nft[j].tokenURI).attributes;
       for (let i = 0; i < att.length; i++) {
-<<<<<<< HEAD
         var traits = att[i].trait_type
         if (obj[traits] === undefined) {
           obj[traits] = []
@@ -19,21 +18,19 @@ function App() {
         var found = (obj[traits]).includes(att[i].value);
         if (!found) {
           obj[traits].push(att[i].value)
-=======
-        if (obj[att[i]["trait_type"]] === undefined) {
-          var t = new Array();
-          obj[att[i]["trait_type"]] = t;
-
-          t.push(att[i]["value"]);
-        } else {
-          if (!obj[att[i]["trait_type"]].includes(att[i]["trait_type"])) {
-            obj[att[i]["trait_type"]].push(att[i]["trait_type"]);
-          }
->>>>>>> cde0df483b2eb054f6227ba8fe1a43cc1ae15db0
         }
       }
     }
     console.log(obj)
+
+    const requestOptions = {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(obj)
+    };
+    fetch('http://localhost:1234/contract/update/0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB', requestOptions)
+      .then(response => response.json())
+      .then(data => console.log(data));
 
 
     setArr1(arr);
@@ -45,7 +42,6 @@ function App() {
     )
       .then((res) => res.json())
       .then((res) => {
-        // console.log(JSON.parse(res.nft[0].tokenURI).attributes);
         parseall(res);
       });
   }, []);
@@ -53,7 +49,7 @@ function App() {
   return <div className="App">
 
 
-    
+
   </div>;
 }
 
