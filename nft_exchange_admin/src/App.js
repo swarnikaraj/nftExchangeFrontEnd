@@ -13,18 +13,15 @@ function App() {
       att = JSON.parse(arr[j].tokenURI).attributes;
 
       for (let i = 0; i < att.length; i++) {
-
-        if ( obj[ att[i]["trait_type"]  ] === undefined) {
-              var t=new Array()
+        if (obj[att[i]["trait_type"]] === undefined) {
+          var t = new Array();
           obj[att[i]["trait_type"]] = t;
-             
-          t.push(att[i]["value"])
 
+          t.push(att[i]["value"]);
         } else {
-
-          
-                
-          obj[att[i]["trait_type"]].push(att[i]["trait_type"]);
+          if (!obj[att[i]["trait_type"]].includes(att[i]["trait_type"])) {
+            obj[att[i]["trait_type"]].push(att[i]["trait_type"]);
+          }
         }
       }
     }
@@ -46,7 +43,11 @@ function App() {
     console.log(obj);
   }, []);
 
-  return <div className="App"></div>;
+  return <div className="App">
+
+
+    
+  </div>;
 }
 
 export default App;
