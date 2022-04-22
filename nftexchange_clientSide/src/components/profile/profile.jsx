@@ -31,7 +31,7 @@ export const Profile = () => {
           <span>Created by</span>{" "}
           <span className="text-sky-400">TeamAzuki</span>
           {/* cards start */}
-          <div className=" grid grid-cols-4 content-center cards">
+          <div className=" grid grid-cols-4 content-center cards ">
             <div>
               <h1 className="text-2xl font-bold">5.4K</h1>
               <span>items</span>
@@ -53,9 +53,27 @@ export const Profile = () => {
             </div>
           </div>
           {/*  end cards */}
+          <p>
+            Take the red bean to join the garden. View the collection at
+            azuki.com/gallery. Azuki starts with a collection of 10,000 avatars
+            that give you membership access to The Garden: a corner of the
+            internet where artists, builders, and web3 enthusiasts meet to
+            create a decentralized future. Azuki holders receive access to
+            exclusive drops, experiences, and more. Visit azuki.com for more
+            details. We rise together. We build together. We grow together.
+          </p>
         </div>
 
         {/* profile details ends */}
+
+        <hr />
+        {/* items and activity buttons start */}
+        <div className="hr-btn-div">
+          <div>items</div>
+          <div>activity</div>
+        </div>
+
+        {/* items and activity buttons ends */}
       </div>
     </>
   );

@@ -9,19 +9,11 @@
 }
 
 .profile_img_div {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  text-align: center;
-  margin-top: -80px;
-
-  border: 10px solid red;
-  background-color: white;
-  border: 10px solid white;
-  margin: auto;
+  display: flex;
+  justify-content: center;
 }
 .profile_img_div > img {
-  border: 6px solid white;
+  border: 5px solid white;
   text-align: center;
   margin-top: -80px;
   width: 180px;
@@ -32,20 +24,26 @@
 .cards {
   text-align: center;
 
-  width: 500px;
   margin: 20px;
 }
 .cards > div {
-  border: 2px solid red;
+  border: 1px solid rgb(133, 131, 131);
+  padding: 10px 25px 10px 25px;
 }
-
+.cards > div > p {
+  color: rgb(133, 131, 131);
+}
 .profileDetail {
   margin: auto;
-  margin-top: -100px;
-  border: 2px solid red;
+  margin-top: 0px;
 
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.profileDetail > p {
+  width: 60%;
+  padding: 10px 15px 10px 15px;
 }
