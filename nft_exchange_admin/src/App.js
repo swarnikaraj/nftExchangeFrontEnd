@@ -5,9 +5,11 @@ import { useEffect, useState } from "react";
 function App() {
   const [arr1, setArr1] = useState([]);
   var att;
-  let obj = {};
 
   function parseall(arr) {
+    let obj = {};
+    var count = 'count'
+    var trait = 'trait'
     for (let j = 0; j < arr.nft.length; j++) {
       att = JSON.parse(arr.nft[j].tokenURI).attributes;
       for (let i = 0; i < att.length; i++) {
@@ -15,9 +17,14 @@ function App() {
         if (obj[traits] === undefined) {
           obj[traits] = []
         }
-        var found = (obj[traits]).includes(att[i].value);
-        if (!found) {
-          obj[traits].push(att[i].value)
+        var found = (obj[traits]).findIndex(x => x.trait === att[i].value);
+        if (found == -1) {
+          var newobj = {}
+          newobj[trait] = att[i].value
+          newobj[count] = 1
+          obj[traits].push(newobj)
+        } else {
+          obj[traits][found][count] = obj[traits][found][count] + 1
         }
       }
     }
