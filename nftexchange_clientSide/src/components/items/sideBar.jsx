@@ -1,11 +1,10 @@
 import { MdFilterList, MdViewHeadline } from "react-icons/md";
-import { FaAngleDown} from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Searchbox } from "../profile/searchbox";
 export const Sidebar = () => {
   const [clicked, setClicked] = useState(false);
-  
 
   var className = clicked ? "hidden py-2 space-y-2" : "py-2 space-y-2";
 
@@ -42,10 +41,6 @@ export const Sidebar = () => {
                 <span className="ml-3">Filter</span>
               </a>
             </li>
-           
-
-
-
 
             {data?.map((dta) => (
               <li key={uuidv4()}>
@@ -69,21 +64,23 @@ export const Sidebar = () => {
                   <FaAngleDown />
                 </button>
                 <ul id="dropdown-opt" className={className}>
-                <Searchbox/> 
+                  <Searchbox />
 
                   {dta.value.map((list) => (
                     <li key={uuidv4()}>
-                       
-{/* <input
-className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value={list} id="flexCheckDefault"
+                      <input
+                        className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                        type="checkbox"
+                        value={list}
+                        id="flexCheckDefault"
+                      />
 
-/> */}
-     
-     
-      <label className="form-check-label inline-block text-gray-800" for="flexCheckDefault">
-        {list}
-      </label>
-
+                      <label
+                        className="form-check-label inline-block text-gray-800"
+                        for="flexCheckDefault"
+                      >
+                        {list}
+                      </label>
                     </li>
                   ))}
                 </ul>

@@ -1,7 +1,11 @@
 import "./profile.css";
 import { FaEthereum } from "react-icons/fa";
-
+import { BiBorderAll } from "react-icons/bi";
+import { AiOutlineStock } from "react-icons/ai";
+import { useState } from "react";
 export const Profile = () => {
+  const [activity, setActivity] = useState(true);
+
   return (
     <>
       <div>
@@ -72,11 +76,18 @@ export const Profile = () => {
         <hr />
         {/* items and activity buttons start */}
         <div className="hr-btn-div flex justify-center">
-          <button className="pt-2 pb-2 pl-5 pr-8 hover:opacity-70 font-bold hover:font-light ">
-            Items
-          </button>
-          <div className="pt-2 pb-2 pl-5 pr-8 hover:opacity-70 hover:font-bold ">
-            Activity
+          <div className=" pt-2 pb-2 pl-5 pr-8  flex justify-center">
+            <BiBorderAll />
+            <button className=" hover:opacity-70 font-bold hover:font-light ml-2 mr-2 ">
+              Items
+            </button>
+          </div>
+
+          <div className=" pt-2 pb-2 pl-5 pr-8  flex justify-center">
+            <AiOutlineStock />
+            <button className=" hover:opacity-70 font-bold hover:font-light ml-2 mr-2 ">
+              Activity
+            </button>
           </div>
         </div>
 
