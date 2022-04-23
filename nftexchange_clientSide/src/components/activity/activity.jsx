@@ -136,7 +136,7 @@ export const Activity = ({ rows, dataArr }) => {
                     <td>{data.item}</td>
                     <td>{data.price}</td>
                     <td>{data.quantity}</td>
-                    <td>{data.to}</td>
+                    <td>{data.from.slice(0, 7)}</td>
                     <td>{data.time}</td>
                   </tr>
                 ))}
