@@ -112,9 +112,8 @@ export const Activity = ({ rows, dataArr }) => {
         </div>
 
         <div className="w-8/10  ml-5 mr-5 ">
-          <div className="w-30">
-            <Dropdown optionName={"Last 90 days"} dataArr={days} />
-          </div>
+          <Dropdown optionName={"Last 90 days"} dataArr={days} width={"w-30"} />
+
           <div className="container my-12 mx-auto px-4 md:px-3 border border-gray-200">
             <table class="table-auto w-full">
               <thead className="pt-4 pb-4 mt-2 mb-2">

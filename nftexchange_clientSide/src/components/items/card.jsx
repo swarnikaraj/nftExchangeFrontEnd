@@ -21,12 +21,14 @@ export const Cards = ({ rows, dataArr }) => {
               dataArr={["All items", "bundles"]}
             />
           </div>
-          <div className="m-1 mr-2 w-1/5">
+          <div className="m-1 mr-2 w-1/4">
             <Dropdown
               optionName={"Price: Low to High"}
               dataArr={["Recently created", "Recently Sold", "Recently open"]}
+              width={"w-full"}
             />
           </div>
+          <div></div>
         </div>
 
         <div className="w-8/10  ml-5 mr-5 ">
