@@ -1,5 +1,5 @@
 import "./profile.css";
-import {} from "react-icons";
+import { FaEthereum } from "react-icons/fa";
 
 export const Profile = () => {
   return (
@@ -16,7 +16,7 @@ export const Profile = () => {
         {/* banner ends */}
 
         {/* dp */}
-        <div className="profile_img_div">
+        <div className="profile_img_div flex justify-center">
           <img
             src="https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/s880/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg"
             className="profile_img"
@@ -32,22 +32,25 @@ export const Profile = () => {
           <span className="text-sky-400">TeamAzuki</span>
           {/* cards start */}
           <div className=" grid grid-cols-4 content-center cards ">
-            <div>
+            <div className="border pt-5 pb-5 pl-10 pr-10">
               <h1 className="text-2xl font-bold">5.4K</h1>
-              <span>items</span>
+              <p>items</p>
             </div>
 
-            <div>
-              <h1 className="text-2xl font-bold">8.1K</h1>
+            <div className="border pt-5 pb-5 pl-10 pr-10">
+              <h1 className="text-2xl font-bold"> 8.1K</h1>
               <p>owners</p>
             </div>
 
-            <div>
-              <h1 className="text-2xl font-bold">81.3</h1>
+            <div className="border pt-5 pb-5 pl-10 pr-10">
+              <div className="flex justify-center">
+                <FaEthereum />
+                <h1 className="text-2xl font-bold">81.3</h1>
+              </div>
               <p>floor price</p>
             </div>
 
-            <div>
+            <div className="border pt-5 pb-5 pl-10 pr-10">
               <h1 className="text-2xl font-bold">4.5K</h1>
               <p>volume traded</p>
             </div>
@@ -68,9 +71,13 @@ export const Profile = () => {
 
         <hr />
         {/* items and activity buttons start */}
-        <div className="hr-btn-div">
-          <div>items</div>
-          <div>activity</div>
+        <div className="hr-btn-div flex justify-center">
+          <button className="pt-2 pb-2 pl-5 pr-8 hover:opacity-70 font-bold hover:font-light ">
+            Items
+          </button>
+          <div className="pt-2 pb-2 pl-5 pr-8 hover:opacity-70 hover:font-bold ">
+            Activity
+          </div>
         </div>
 
         {/* items and activity buttons ends */}
