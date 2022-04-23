@@ -32,19 +32,19 @@ export const Statusfilter = () => {
             key={uuidv4()}
             className=" grid grid-cols-2 gap-2 overflow-y-scroll "
           >
-            <button class="bg-white hover:bg-gray-100  text-sm text-gray-600 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
+            <button className="bg-white hover:bg-gray-100  text-sm text-gray-600 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
               Buy now
             </button>
-            <button class="bg-white hover:bg-gray-100  text-sm text-gray-600 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
+            <button className="bg-white hover:bg-gray-100  text-sm text-gray-600 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
               On Auction
             </button>
-            <button class="bg-white hover:bg-gray-100 text-sm text-gray-600 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
+            <button className="bg-white hover:bg-gray-100 text-sm text-gray-600 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
               New
             </button>
-            <button class="bg-white hover:bg-gray-100 text-sm text-gray-600 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
+            <button className="bg-white hover:bg-gray-100 text-sm text-gray-600 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
               Has Offer
             </button>
-            <button class="bg-white hover:bg-gray-100  text-sm text-gray-600 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
+            <button className="bg-white hover:bg-gray-100  text-sm text-gray-600 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
               Buy with Card
             </button>
           </li>

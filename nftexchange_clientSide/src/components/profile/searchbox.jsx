@@ -10,7 +10,7 @@ export const Searchbox = ({ optionName, dataArr }) => {
       <input
         type="text"
         placeholder="Search"
-        className="w-full pl-10 pr-10 pt-3.5 pb-3.5 rounded-sm border"
+        className="w-full pl-10 pr-10 pt-3.5 pb-3.5 rounded-sm border focus:ring-0"
       />
     </>
   );

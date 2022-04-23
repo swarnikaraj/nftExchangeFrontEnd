@@ -24,11 +24,11 @@ export const Nav = () => {
           </div>
           <Searchbox />
 
-          <div className="flex justify-center ">
-            <div className="pt-2 pb-2 pl-2 pr-2">Explore</div>
-            <div className="pt-2 pb-2 pl-2 pr-2"> Stats</div>
-            <div className="pt-2 pb-2 pl-2 pr-2">Resoures</div>
-            <div className="pt-2 pb-2 pl-2 pr-2">Create</div>
+          <div className="lg:flex justify-center  ">
+            <div className="pt-2 pb-2 pl-2 pr-2 ">Explore</div>
+            <div className="pt-2 pb-2 pl-2 pr-2 "> Stats</div>
+            <div className="pt-2 pb-2 pl-2 pr-2 ">Resoures</div>
+            <div className="pt-2 pb-2 pl-2 pr-2 ">Create</div>
 
             <MdOutlineAccountCircle size={60} className="pt-2 pb-2 pl-2 pr-2" />
             <AiOutlineWallet size={60} className="pt-2 pb-2 pl-2 pr-2" />

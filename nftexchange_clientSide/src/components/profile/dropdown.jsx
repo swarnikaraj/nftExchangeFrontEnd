@@ -7,7 +7,7 @@ export const Dropdown = ({ optionName, dataArr }) => {
 
   return (
     <>
-      <select className="w-full pt-4 pb-4 pl-7 pr-7 rounded-sm">
+      <select className="w-full pt-4 pb-4 pl-7 pr-7 rounded-sm border">
         <option className="rounded-sm">{optionName}</option>
         {dataArr?.map((data) => (
           <option key={uuidv4()} value={data}>
