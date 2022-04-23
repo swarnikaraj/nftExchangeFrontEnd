@@ -117,8 +117,8 @@ export const Activity = ({ rows, dataArr }) => {
           </div>
           <div className="container my-12 mx-auto px-4 md:px-3 border border-gray-200">
             <table class="table-auto w-full">
-              <thead>
-                <tr>
+              <thead className="pt-4 pb-4 mt-2 mb-2">
+                <tr className="border-b ">
                   <th></th>
                   <th>Item</th>
                   <th>Price</th>
@@ -130,14 +130,15 @@ export const Activity = ({ rows, dataArr }) => {
               <tbody>
                 {actArray.map((data) => (
                   <tr key={uuidv4()}>
-                    <td>
-                      <AiOutlineShoppingCart /> Sale
+                    <td className="flex justify-center">
+                      <AiOutlineShoppingCart />{" "}
+                      <p className="ml-2 mr-2 ">Sale</p>
                     </td>
-                    <td>{data.item}</td>
-                    <td>{data.price}</td>
-                    <td>{data.quantity}</td>
-                    <td>{data.from.slice(0, 7)}</td>
-                    <td>{data.time}</td>
+                    <td className="pt-2 pb-2 ">{data.item}</td>
+                    <td className="pt-2 pb-2 ">{data.price}</td>
+                    <td className="pt-2 pb-2 ">{data.quantity}</td>
+                    <td className="pt-2 pb-2 ">{data.from.slice(0, 7)}</td>
+                    <td className="pt-2 pb-2 ">{data.time}</td>
                   </tr>
                 ))}
               </tbody>
