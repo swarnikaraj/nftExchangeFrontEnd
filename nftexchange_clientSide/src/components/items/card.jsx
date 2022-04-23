@@ -10,7 +10,7 @@ export const Cards = ({ rows, dataArr }) => {
 
   return (
     <>
-      <div className="flex flex-col w-3/4">
+      <div className="flex flex-col md:w-3/4">
         <div className="flex justify-center flex-wrap border-t pl-4 pr-4 ">
           <div className="m-1 mr-2 w-1/2">
             <Searchbox />

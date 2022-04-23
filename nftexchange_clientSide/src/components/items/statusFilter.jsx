@@ -1,9 +1,8 @@
-import { MdFilterList, MdViewHeadline } from "react-icons/md";
+import { MdViewHeadline } from "react-icons/md";
 import { FaAngleDown } from "react-icons/fa";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Searchbox } from "../profile/searchbox";
-import { StatusFilter } from "./statusFilter";
+
 export const Statusfilter = () => {
   const [clicked, setClicked] = useState(false);
 
@@ -31,21 +30,21 @@ export const Statusfilter = () => {
         <ul id="dropdown-opt" className={className}>
           <li
             key={uuidv4()}
-            className=" grid grid-cols-2 gap-2 overflow-y-scroll"
+            className=" grid grid-cols-2 gap-2 overflow-y-scroll "
           >
-            <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
+            <button class="bg-white hover:bg-gray-100  text-sm text-gray-600 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
               Buy now
             </button>
-            <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
+            <button class="bg-white hover:bg-gray-100  text-sm text-gray-600 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
               On Auction
             </button>
-            <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
+            <button class="bg-white hover:bg-gray-100 text-sm text-gray-600 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
               New
             </button>
-            <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
+            <button class="bg-white hover:bg-gray-100 text-sm text-gray-600 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
               Has Offer
             </button>
-            <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
+            <button class="bg-white hover:bg-gray-100  text-sm text-gray-600 font-semibold py-2 px-6 border border-gray-400 rounded shadow">
               Buy with Card
             </button>
           </li>

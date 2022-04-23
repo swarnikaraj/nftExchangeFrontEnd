@@ -4,10 +4,11 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Searchbox } from "../profile/searchbox";
 import { Statusfilter } from "./statusFilter";
+import { Pricefilter } from "./priceFilter";
 export const Sidebar = () => {
   const [clicked, setClicked] = useState(false);
 
-  var className = clicked ? "hidden py-2 space-y-2" : "py-2 space-y-2";
+  var className = clicked ? "hidden py-2 space-y-2 " : "py-2 space-y-2";
 
   const data = [
     {
@@ -30,7 +31,7 @@ export const Sidebar = () => {
 
   return (
     <>
-      <aside className="w-3/10" aria-label="Sidebar">
+      <aside className="md:w-1/4 " aria-label="Sidebar ">
         <div className="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-transparent-800">
           <ul className="space-y-2">
             <li>
@@ -42,6 +43,7 @@ export const Sidebar = () => {
                 <span className="ml-3">Filter</span>
               </a>
             </li>
+            <Pricefilter />
             <Statusfilter />
 
             {data?.map((dta) => (
