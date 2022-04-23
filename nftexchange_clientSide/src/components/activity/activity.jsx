@@ -1,4 +1,4 @@
-import { MdFavoriteBorder } from "react-icons/md";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -13,7 +13,78 @@ export const Activity = ({ rows, dataArr }) => {
   const [filters, setFilters] = useState(["Filter1", "Filter2", "filter3"]);
 
   const days = ["Last 60 days", "Last 90 days", "All time"];
-
+  const actArray = [
+    {
+      item: "Speotyte cuniculata",
+      price: 23,
+      quantity: 58,
+      from: "1JSJMn6DhxSr7MTwGGtCLU3EUnu2GQbBzE",
+      time: "10:09 PM",
+    },
+    {
+      item: "Balearica pavonina",
+      price: 76,
+      quantity: 45,
+      from: "1L6aE8QY3rDHT8astsHHJGicEwjriWbbSn",
+      time: "8:36 AM",
+    },
+    {
+      item: "Spilogale gracilis",
+      price: 7,
+      quantity: 16,
+      from: "17L4UcAgRyLxh4HuZ55WwXBtdUeUviicrr",
+      time: "5:50 AM",
+    },
+    {
+      item: "Agelaius phoeniceus",
+      price: 7,
+      quantity: 46,
+      from: "1FFdWQXvggNRYQckXV8FWPzS21TD4c3pt",
+      time: "1:30 PM",
+    },
+    {
+      item: "Damaliscus lunatus",
+      price: 8,
+      quantity: 2,
+      from: "1GkcxZpkdho6MPM85nYGK7ydpsQYwgJqf1",
+      time: "11:17 AM",
+    },
+    {
+      item: "Drymarchon corias couperi",
+      price: 90,
+      quantity: 93,
+      from: "1HwJCrRnyvCUp9bsUyjRWsqWcyDVwL2fFs",
+      time: "4:01 AM",
+    },
+    {
+      item: "Uraeginthus granatina",
+      price: 40,
+      quantity: 8,
+      from: "1LgCST5et7Fs1nk3nZAKtDg7p2ppJWcoK9",
+      time: "9:30 PM",
+    },
+    {
+      item: "Vulpes cinereoargenteus",
+      price: 93,
+      quantity: 98,
+      from: "18ACL2wiN8bs8Dq3bh2aHgzVfYLJK1UsZx",
+      time: "7:46 AM",
+    },
+    {
+      item: "Gyps bengalensis",
+      price: 45,
+      quantity: 66,
+      from: "1BNvkBzJtq4s9CYxXPpiP5JVfZoj3JEb5a",
+      time: "7:21 PM",
+    },
+    {
+      item: "Macropus agilis",
+      price: 19,
+      quantity: 96,
+      from: "1KwqxoUEsSnmqEYWqCjhHXFyPskpsQv1Ao",
+      time: "11:27 AM",
+    },
+  ];
   //   setFilter(filters=> [...filters,filtername] );
 
   function clearFilter() {
@@ -41,11 +112,36 @@ export const Activity = ({ rows, dataArr }) => {
         </div>
 
         <div className="w-8/10  ml-5 mr-5 ">
-          <div className="">
+          <div className="w-30">
             <Dropdown optionName={"Last 90 days"} dataArr={days} />
           </div>
           <div className="container my-12 mx-auto px-4 md:px-3 border border-gray-200">
-            <h1>Activity</h1>
+            <table class="table-auto w-full">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Item</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>To</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                {actArray.map((data) => (
+                  <tr key={uuidv4()}>
+                    <td>
+                      <AiOutlineShoppingCart /> Sale
+                    </td>
+                    <td>{data.item}</td>
+                    <td>{data.price}</td>
+                    <td>{data.quantity}</td>
+                    <td>{data.from.slice(0, 7)}</td>
+                    <td>{data.time}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
