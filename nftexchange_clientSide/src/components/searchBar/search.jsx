@@ -1,21 +1,22 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
-export const Searchbox=()=>{
+export const Searchbox = () => {
+  const [text, setText] = useState("");
 
-const [text, setText]=useState("");
-
-useEffect(()=>{
+  useEffect(() => {
     console.log(text);
-},[text])
+  }, [text]);
 
-    return (
+  return (
     <>
-    
-    <input placeholder="I am a search box" type="text" onChange={(e)=>{setText(e.target.value)}}/>
+      <input
+        placeholder="Search Items, collections and accounts"
+        type="text"
+        onChange={(e) => {
+          setText(e.target.value);
+        }}
+        className="border border-gray-600 bg-gray-100 w-3/6 pt-2 pb-2 pl-4 pr-4"
+      />
     </>
-    
-    )
-    
-    }
-    
-    
+  );
+};
