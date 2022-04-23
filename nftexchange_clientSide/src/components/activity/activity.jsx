@@ -11,9 +11,12 @@ export const Activity = ({ rows, dataArr }) => {
   const [clicked, setClicked] = useState(false);
 
   const [filters, setFilters] = useState(["Filter1", "Filter2", "filter3"]);
+  
 
   const days = ["Last 60 days", "Last 90 days", "All time"];
-
+const actArray=[
+    {}
+]
   //   setFilter(filters=> [...filters,filtername] );
 
   function clearFilter() {
@@ -41,11 +44,34 @@ export const Activity = ({ rows, dataArr }) => {
         </div>
 
         <div className="w-8/10  ml-5 mr-5 ">
-          <div className="">
+          <div className="w-30">
             <Dropdown optionName={"Last 90 days"} dataArr={days} />
           </div>
           <div className="container my-12 mx-auto px-4 md:px-3 border border-gray-200">
-            <h1>Activity</h1>
+            
+          <table class="table-auto">
+  <thead>
+    <tr>
+        <th></th>
+      <th>Item</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>To</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+      <td>Malcolm Lockyer</td>
+      <td>1961</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+
+
           </div>
         </div>
       </div>
