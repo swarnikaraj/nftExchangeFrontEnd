@@ -3,6 +3,7 @@ import { FaAngleDown } from "react-icons/fa";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Searchbox } from "../profile/searchbox";
+import { Statusfilter } from "./statusFilter";
 export const Sidebar = () => {
   const [clicked, setClicked] = useState(false);
 
@@ -29,7 +30,7 @@ export const Sidebar = () => {
 
   return (
     <>
-      <aside className="w-64" aria-label="Sidebar">
+      <aside className="w-3/10" aria-label="Sidebar">
         <div className="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-transparent-800">
           <ul className="space-y-2">
             <li>
@@ -41,6 +42,7 @@ export const Sidebar = () => {
                 <span className="ml-3">Filter</span>
               </a>
             </li>
+            <Statusfilter />
 
             {data?.map((dta) => (
               <li key={uuidv4()}>
@@ -67,7 +69,7 @@ export const Sidebar = () => {
                   <Searchbox />
 
                   {dta.value.map((list) => (
-                    <li key={uuidv4()}>
+                    <li key={uuidv4()} className="overflow-y-scroll">
                       <input
                         className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                         type="checkbox"
