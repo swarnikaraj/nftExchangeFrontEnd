@@ -5,6 +5,7 @@ import { AiOutlineStock } from "react-icons/ai";
 import { useState } from "react";
 export const Profile = () => {
   const [activity, setActivity] = useState(true);
+  const [items, setItems] = useState(true);
 
   return (
     <>
@@ -75,7 +76,7 @@ export const Profile = () => {
 
         <hr />
         {/* items and activity buttons start */}
-        <div className="hr-btn-div flex justify-center">
+        {/* <div className="hr-btn-div flex justify-center">
           <div className=" pt-2 pb-2 pl-5 pr-8  flex justify-center">
             <BiBorderAll />
             <button className=" hover:opacity-70 font-bold hover:font-light ml-2 mr-2 ">
@@ -89,7 +90,7 @@ export const Profile = () => {
               Activity
             </button>
           </div>
-        </div>
+        </div> */}
 
         {/* items and activity buttons ends */}
       </div>
