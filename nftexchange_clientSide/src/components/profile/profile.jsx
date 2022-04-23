@@ -1,11 +1,15 @@
 import "./profile.css";
 import { FaEthereum } from "react-icons/fa";
-import { BiBorderAll } from "react-icons/bi";
+import { FaAngleUp } from "react-icons/fa";
 import { AiOutlineStock } from "react-icons/ai";
 import { useState } from "react";
 export const Profile = () => {
   const [activity, setActivity] = useState(true);
   const [items, setItems] = useState(true);
+  const [clicked, setClicked] = useState(false);
+  const class_p = clicked ? "h-20" : "h-full";
+
+  function handleTextSize() {}
 
   return (
     <>
@@ -61,7 +65,7 @@ export const Profile = () => {
             </div>
           </div>
           {/*  end cards */}
-          <p>
+          <p className={class_p}>
             Take the red bean to join the garden. View the collection at
             azuki.com/gallery. Azuki starts with a collection of 10,000 avatars
             that give you membership access to The Garden: a corner of the
@@ -70,6 +74,9 @@ export const Profile = () => {
             exclusive drops, experiences, and more. Visit azuki.com for more
             details. We rise together. We build together. We grow together.
           </p>
+          <button className="w-40 bg-gray-100 rounded-sm flex justify-center pl-8 pr-8">
+            <FaAngleUp onClick={() => setClicked((p) => !p)} />
+          </button>
         </div>
 
         {/* profile details ends */}
