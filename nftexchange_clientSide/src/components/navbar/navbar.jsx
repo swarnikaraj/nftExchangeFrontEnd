@@ -24,7 +24,7 @@ export const Nav = () => {
           </div>
           <Searchbox />
 
-          <div className="lg:flex justify-center  ">
+          <div className="flex justify-center  items-center ">
             <div className="pt-2 pb-2 pl-2 pr-2 ">Explore</div>
             <div className="pt-2 pb-2 pl-2 pr-2 "> Stats</div>
             <div className="pt-2 pb-2 pl-2 pr-2 ">Resoures</div>

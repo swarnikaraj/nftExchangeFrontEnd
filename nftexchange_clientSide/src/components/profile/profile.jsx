@@ -52,9 +52,9 @@ export const Profile = () => {
             </div>
 
             <div className="border pt-5 pb-5 pl-10 pr-10">
-              <div className="flex justify-center">
+              <div className="flex justify-center items-center">
                 <FaEthereum />
-                <h1 className="text-2xl font-bold">81.3</h1>
+                <h1 className="text-2xl font-bold pl-2">81.3</h1>
               </div>
               <p>floor price</p>
             </div>
