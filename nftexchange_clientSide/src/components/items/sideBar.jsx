@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Searchbox } from "../profile/searchbox";
 import { Statusfilter } from "./statusFilter";
 import { Pricefilter } from "./priceFilter";
+import { useEffect } from "react";
 export const Sidebar = () => {
   const [clicked, setClicked] = useState(false);
 
@@ -28,6 +29,17 @@ export const Sidebar = () => {
       value: ["yellow", "nlues", "green", "pink"],
     },
   ];
+
+  useEffect(() => {
+    fetch(
+      "http://127.0.0.1:1234/contract/0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB"
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("dimag khrab ho rga ab");
+        console.log(res);
+      });
+  }, []);
 
   return (
     <>

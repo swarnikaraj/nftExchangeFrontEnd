@@ -46,7 +46,7 @@ export const ItemList = () => {
         {items && (
           <>
             <Sidebar />
-            <Cards dataArr={[1, 2, 3, 4, 5, 6]} />{" "}
+            <Cards dataArr={[1, 2, 3, 4, 5, 6]} />
           </>
         )}
 

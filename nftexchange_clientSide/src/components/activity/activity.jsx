@@ -98,15 +98,15 @@ export const Activity = ({ rows, dataArr }) => {
       <div className="flex flex-col md:w-3/4">
         <div className="flex justify-center flex-wrap border-t border-b pl-4 pr-4 ">
           {filters.map((filter) => (
-            <span class="px-4 py-2 rounded-full text-gray-500 border border-gray-300 font-semibold text-sm flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease mt-3 mb-3 ml-2 mr-2">
+            <span className="px-4 py-2 rounded-full text-gray-500 border border-gray-300 font-semibold text-sm flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease mt-3 mb-3 ml-2 mr-2">
               {filter}
-              <button class="bg-transparent hover focus:outline-none ">
+              <button className="bg-transparent hover focus:outline-none ">
                 <MdOutlineClose />
               </button>
             </span>
           ))}
 
-          <p onclick={clearFilter} className="mt-3 mb-3">
+          <p onClick={clearFilter} className="mt-3 mb-3">
             Clear All
           </p>
         </div>
@@ -115,7 +115,7 @@ export const Activity = ({ rows, dataArr }) => {
           <Dropdown optionName={"Last 90 days"} dataArr={days} width={"w-30"} />
 
           <div className="container my-12 mx-auto px-4 md:px-3 border border-gray-200">
-            <table class="table-auto w-full">
+            <table className="table-auto w-full">
               <thead className="pt-4 pb-4 mt-2 mb-2">
                 <tr className="border-b ">
                   <th></th>
