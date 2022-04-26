@@ -1,13 +1,15 @@
 import { MdFilterList, MdViewHeadline } from "react-icons/md";
 import { FaAngleDown } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Searchbox } from "../profile/searchbox";
 import { Statusfilter } from "./statusFilter";
 import { Pricefilter } from "./priceFilter";
-import { useEffect } from "react";
+
 export const Sidebar = () => {
   const [clicked, setClicked] = useState(false);
+  const [arr, setArr] = useState([]);
+  const myarr=[]
 
   var className = clicked ? "hidden py-2 space-y-2 " : "py-2 space-y-2";
 
@@ -31,14 +33,26 @@ export const Sidebar = () => {
   ];
 
   useEffect(() => {
+    console.log("hello");
     fetch(
-      "http://127.0.0.1:1234/contract/0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB"
+      "http://localhost:1234/contract/0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB"
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log("dimag khrab ho rga ab");
-        console.log(res);
+        let obj = JSON.parse(res.nft[0].attributes);
+        
+        for (let key in obj) {
+          let t = {};
+          t[key] = obj[key];
+          // console.log(t);
+          myarr.push(t);
+
+          // console.log("key", key, "val", obj[key], "len", obj[key].length);
+        }
       });
+    setArr(myarr);
+
+    console.warn(arr);
   }, []);
 
   return (
