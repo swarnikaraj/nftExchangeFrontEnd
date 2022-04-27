@@ -4,11 +4,13 @@ import { BiBorderAll } from "react-icons/bi";
 import { ActivitySidebar } from "../activity/activitySidebar";
 import { Activity } from "../activity/activity";
 import { AiOutlineStock } from "react-icons/ai";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const ItemList = () => {
-  const [activity, setActivity] = useState(true);
   const [items, setItems] = useState(false);
+  const [activity, setActivity] = useState(true);
+
+  const [nfts, setNfts] = useState([]);
 
   function showItems() {
     setActivity(false);
@@ -19,34 +21,46 @@ export const ItemList = () => {
     setItems(false);
   }
 
+  useEffect(() => {
+    fetch(
+      "http://127.0.0.1:1234/nft/0xED5AF388653567Af2F388E6224dC7C4b3241C544?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=Hair&search[stringTraits][0][values][0]=Spirit%20Long"
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        let data = res;
+
+        setNfts(data.nft);
+      });
+  }, []);
+
   return (
     <>
-      <div className="hr-btn-div flex justify-center">
-        <div className=" pt-2 pb-2 pl-5 pr-8  flex justify-center">
+      <div className="flex justify-center hr-btn-div">
+        <div className="flex justify-center pt-2 pb-2 pl-5 pr-8 ">
           <BiBorderAll />
           <button
-            className=" hover:opacity-70 font-bold hover:font-light ml-2 mr-2 "
+            className="ml-2 mr-2 font-bold hover:opacity-70 hover:font-light"
             onClick={showItems}
           >
             Items
           </button>
         </div>
 
-        <div className=" pt-2 pb-2 pl-5 pr-8  flex justify-center">
+        <div className="flex justify-center pt-2 pb-2 pl-5 pr-8 ">
           <AiOutlineStock />
           <button
-            className=" hover:opacity-70 font-bold hover:font-light ml-2 mr-2 "
+            className="ml-2 mr-2 font-bold hover:opacity-70 hover:font-light"
             onClick={showActivity}
           >
             Activity
           </button>
         </div>
       </div>
-      <div className="flex justify-center flex-wrap ml-0 mr-0 ">
+      <div className="flex flex-wrap justify-center ml-0 mr-0 ">
         {items && (
           <>
             <Sidebar />
-            <Cards dataArr={[1, 2, 3, 4, 5, 6]} />{" "}
+            <Cards dataArr={nfts} />
           </>
         )}
 

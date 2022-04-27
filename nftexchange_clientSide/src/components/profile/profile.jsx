@@ -1,11 +1,15 @@
 import "./profile.css";
 import { FaEthereum } from "react-icons/fa";
-import { BiBorderAll } from "react-icons/bi";
+import { FaAngleUp } from "react-icons/fa";
 import { AiOutlineStock } from "react-icons/ai";
 import { useState } from "react";
 export const Profile = () => {
   const [activity, setActivity] = useState(true);
   const [items, setItems] = useState(true);
+  const [clicked, setClicked] = useState(false);
+  const class_p = clicked ? "h-20" : "h-full";
+
+  function handleTextSize() {}
 
   return (
     <>
@@ -48,9 +52,9 @@ export const Profile = () => {
             </div>
 
             <div className="border pt-5 pb-5 pl-10 pr-10">
-              <div className="flex justify-center">
+              <div className="flex justify-center items-center">
                 <FaEthereum />
-                <h1 className="text-2xl font-bold">81.3</h1>
+                <h1 className="text-2xl font-bold pl-2">81.3</h1>
               </div>
               <p>floor price</p>
             </div>
@@ -61,7 +65,7 @@ export const Profile = () => {
             </div>
           </div>
           {/*  end cards */}
-          <p>
+          <p className={class_p}>
             Take the red bean to join the garden. View the collection at
             azuki.com/gallery. Azuki starts with a collection of 10,000 avatars
             that give you membership access to The Garden: a corner of the
@@ -70,27 +74,14 @@ export const Profile = () => {
             exclusive drops, experiences, and more. Visit azuki.com for more
             details. We rise together. We build together. We grow together.
           </p>
+          <button className="w-40 bg-gray-100 rounded-sm flex justify-center pl-8 pr-8">
+            <FaAngleUp onClick={() => setClicked((p) => !p)} />
+          </button>
         </div>
 
         {/* profile details ends */}
 
         <hr />
-        {/* items and activity buttons start */}
-        {/* <div className="hr-btn-div flex justify-center">
-          <div className=" pt-2 pb-2 pl-5 pr-8  flex justify-center">
-            <BiBorderAll />
-            <button className=" hover:opacity-70 font-bold hover:font-light ml-2 mr-2 ">
-              Items
-            </button>
-          </div>
-
-          <div className=" pt-2 pb-2 pl-5 pr-8  flex justify-center">
-            <AiOutlineStock />
-            <button className=" hover:opacity-70 font-bold hover:font-light ml-2 mr-2 ">
-              Activity
-            </button>
-          </div>
-        </div> */}
 
         {/* items and activity buttons ends */}
       </div>

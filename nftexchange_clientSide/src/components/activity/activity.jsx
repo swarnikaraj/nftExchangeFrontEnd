@@ -98,27 +98,26 @@ export const Activity = ({ rows, dataArr }) => {
       <div className="flex flex-col md:w-3/4">
         <div className="flex justify-center flex-wrap border-t border-b pl-4 pr-4 ">
           {filters.map((filter) => (
-            <span class="px-4 py-2 rounded-full text-gray-500 border border-gray-300 font-semibold text-sm flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease mt-3 mb-3 ml-2 mr-2">
+            <span className="px-4 py-2 rounded-full text-gray-500 border border-gray-300 font-semibold text-sm flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease mt-3 mb-3 ml-2 mr-2">
               {filter}
-              <button class="bg-transparent hover focus:outline-none ">
+              <button className="bg-transparent hover focus:outline-none ">
                 <MdOutlineClose />
               </button>
             </span>
           ))}
 
-          <p onclick={clearFilter} className="mt-3 mb-3">
+          <p onClick={clearFilter} className="mt-3 mb-3">
             Clear All
           </p>
         </div>
 
         <div className="w-8/10  ml-5 mr-5 ">
-          <div className="w-30">
-            <Dropdown optionName={"Last 90 days"} dataArr={days} />
-          </div>
+          <Dropdown optionName={"Last 90 days"} dataArr={days} width={"w-30"} />
+
           <div className="container my-12 mx-auto px-4 md:px-3 border border-gray-200">
-            <table class="table-auto w-full">
-              <thead>
-                <tr>
+            <table className="table-auto w-full">
+              <thead className="pt-4 pb-4 mt-2 mb-2">
+                <tr className="border-b ">
                   <th></th>
                   <th>Item</th>
                   <th>Price</th>
@@ -130,14 +129,15 @@ export const Activity = ({ rows, dataArr }) => {
               <tbody>
                 {actArray.map((data) => (
                   <tr key={uuidv4()}>
-                    <td>
-                      <AiOutlineShoppingCart /> Sale
+                    <td className="flex justify-center">
+                      <AiOutlineShoppingCart />{" "}
+                      <p className="ml-2 mr-2 ">Sale</p>
                     </td>
-                    <td>{data.item}</td>
-                    <td>{data.price}</td>
-                    <td>{data.quantity}</td>
-                    <td>{data.from.slice(0, 7)}</td>
-                    <td>{data.time}</td>
+                    <td className="pt-2 pb-2 ">{data.item}</td>
+                    <td className="pt-2 pb-2 ">{data.price}</td>
+                    <td className="pt-2 pb-2 ">{data.quantity}</td>
+                    <td className="pt-2 pb-2 ">{data.from.slice(0, 7)}</td>
+                    <td className="pt-2 pb-2 ">{data.time}</td>
                   </tr>
                 ))}
               </tbody>
