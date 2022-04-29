@@ -4,11 +4,14 @@ import { BiBorderAll } from "react-icons/bi";
 import { ActivitySidebar } from "../activity/activitySidebar";
 import { Activity } from "../activity/activity";
 import { AiOutlineStock } from "react-icons/ai";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { contractContext } from "../../contexts/contractsContext";
+const qs = require("qs");
 
 export const ItemList = () => {
-  const [items, setItems] = useState(false);
-  const [activity, setActivity] = useState(true);
+  const [items, setItems] = useState(true);
+  const [activity, setActivity] = useState(false);
+  const { contractAddress } = useContext(contractContext);
 
   const [nfts, setNfts] = useState([]);
 
@@ -22,8 +25,13 @@ export const ItemList = () => {
   }
 
   useEffect(() => {
+    let t = qs.parse(
+      "search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=Butt&search[stringTraits][0][values][0]=Wounded&search[stringTraits][1][name]=Dick&search[stringTraits][1][values][0]=Flower&search[stringTraits][1][values][1]=Purpy&search[stringTraits][1][values][2]=Tentacle&search[stringTraits][1][values][3]=Oh%20Canada"
+    );
+
+    console.log(t);
     fetch(
-      "http://127.0.0.1:1234/nft/0xED5AF388653567Af2F388E6224dC7C4b3241C544?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=Hair&search[stringTraits][0][values][0]=Spirit%20Long"
+      `http://127.0.0.1:1234/nft/${contractAddress}?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=Background&search[stringTraits][0][values][0]=Buds`
     )
       .then((res) => res.json())
       .then((res) => {

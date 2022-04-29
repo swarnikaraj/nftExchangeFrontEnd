@@ -10,44 +10,15 @@ export const Sidebar = () => {
   const [clicked, setClicked] = useState(false);
   const [arr, setArr] = useState([]);
 
+  const [filtObj, setFiltObj] = useState({});
+
   var className = clicked ? "hidden py-2 space-y-2 " : "py-2 space-y-2";
 
-  // let data = [
-  //   {
-  //     trait_type: "background",
-  //     traits: [
-  //       {
-  //         trait: "yeellow",
-  //         count: 1234,
-  //       },
-  //       {
-  //         trait: "red",
-  //         count: 1234,
-  //       },
-  //       {
-  //         trait: "green",
-  //         count: 1234,
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     trait_type: "butt",
-  //     traits: [
-  //       {
-  //         trait: "carrot",
-  //         count: 1234,
-  //       },
-  //       {
-  //         trait: "none",
-  //         count: 1234,
-  //       },
-  //       {
-  //         trait: "spidey",
-  //         count: 1234,
-  //       },
-  //     ],
-  //   },
-  // ];
+  function oncheck(trait_type, value) {
+    
+
+    console.log(filtObj);
+  }
 
   useEffect(() => {
     fetch(

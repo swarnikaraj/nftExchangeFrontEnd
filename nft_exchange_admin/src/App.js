@@ -5,8 +5,7 @@ import { useEffect, useState } from "react";
 function App() {
   const [arr1, setArr1] = useState([]);
   var att;
-  let attributesFinal = []
-
+  let attributesFinal = [];
 
   function parseall(arr) {
     let obj = {};
@@ -72,23 +71,21 @@ function App() {
       }
     }
 
-    var keys = 'trait_type'
-    var trait_type_count = 'trait_type_count'
-    var value = 'traits'
-    var keyValueObj = {}
-    console.log(obj)
-
+    var keys = "trait_type";
+    var trait_type_count = "trait_type_count";
+    var value = "traits";
+    var keyValueObj = {};
+    console.log(obj);
 
     //let data = Object.entries(obj).map(([key, value]) => ({ [key]: value }));
     for (var key in obj) {
       // console.log(key)
-      keyValueObj[keys] = key
+      keyValueObj[keys] = key;
       // console.log(obj[key])
-      keyValueObj[value] = obj[key]
-      keyValueObj[trait_type_count] = obj[key].length
+      keyValueObj[value] = obj[key];
+      keyValueObj[trait_type_count] = obj[key].length;
       //console.log(keyValueObj)
-      attributesFinal.push(JSON.parse(JSON.stringify(keyValueObj)))
-
+      attributesFinal.push(JSON.parse(JSON.stringify(keyValueObj)));
     }
     const requestOptions = {
       method: "PATCH",
@@ -96,19 +93,21 @@ function App() {
       body: JSON.stringify(attributesFinal),
     };
     fetch(
-      "http://localhost:1234/contract/update/0xED5AF388653567Af2F388E6224dC7C4b3241C544",
+      "http://localhost:1234/contract/update/0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB",
       requestOptions
     )
       .then((response) => response.json())
       .then((data) => console.log(data));
 
     setArr1(arr);
-
   }
 
+
+
+  
   useEffect(() => {
     fetch(
-      "http://localhost:1234/nft/all/0xED5AF388653567Af2F388E6224dC7C4b3241C544"
+      "http://localhost:1234/nft/all/0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB"
     )
       .then((res) => res.json())
       .then((res) => {
