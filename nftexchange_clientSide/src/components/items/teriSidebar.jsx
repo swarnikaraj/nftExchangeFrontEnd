@@ -1,6 +1,6 @@
 import { MdFilterList, MdViewHeadline } from "react-icons/md";
 import { FaAngleDown } from "react-icons/fa";
-import { useState, useEffect, useContext, memo, useRef } from "react";
+import { useState, useEffect, useContext, memo } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Searchbox } from "../profile/searchbox";
 import { Statusfilter } from "./statusFilter";
@@ -10,14 +10,11 @@ import { contractContext } from "../../contexts/contractsContext";
 
 export const Sidebar = () => {
   const [clicked, setClicked] = useState(true);
-
   const [arr, setArr] = useState([]);
   let stringTraits = [];
   const [filtObj, setFiltObj] = useState({});
   const { contractAddress, addContractAddress } = useContext(contractContext);
   const { makeFilterString } = useContext(filterContext);
-  const [sol, setSol] = useState({});
-  const myobj = useRef();
 
   var customClassName = clicked ? "hidden py-2 space-y-2 " : "py-2 space-y-2";
 
@@ -26,14 +23,8 @@ export const Sidebar = () => {
     newObj = { stringTraits: stringTraits };
     let result = { search: newObj };
     console.log(result);
-
     makeFilterString(result);
-   
   }
-
-  const handleMe = ({ target: { name, value } }) => {
-    // setForm({ ...form, [name]: value })
-  };
 
   useEffect(() => {
     fetch(
@@ -104,7 +95,6 @@ export const Sidebar = () => {
                   {dta.traits.map((list) => (
                     <li key={uuidv4()} className="overflow-y-scroll">
                       <input
-                        value={stringTraits}
                         className="float-left w-4 h-4 mt-1 mr-2 align-top transition duration-200 bg-white bg-center bg-no-repeat bg-contain border border-gray-300 rounded-sm appearance-none cursor-pointer form-check-input checked:bg-blue-600 checked:border-blue-600 focus:outline-none"
                         type="checkbox"
                         id="flexCheckDefault"

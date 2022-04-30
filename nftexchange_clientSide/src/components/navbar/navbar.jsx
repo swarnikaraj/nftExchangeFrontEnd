@@ -23,7 +23,7 @@ export const Nav = () => {
             </span>
           </div>
 
-        
+           
             <Searchbox />
          
 

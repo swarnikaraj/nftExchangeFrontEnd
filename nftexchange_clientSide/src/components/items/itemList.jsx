@@ -6,15 +6,12 @@ import { Activity } from "../activity/activity";
 import { AiOutlineStock } from "react-icons/ai";
 import { useEffect, useState, useContext } from "react";
 import { contractContext } from "../../contexts/contractsContext";
-import { filterContext } from "../../contexts/filterTrait";
-
 const qs = require("qs");
 
 export const ItemList = () => {
   const [items, setItems] = useState(true);
   const [activity, setActivity] = useState(false);
   const { contractAddress } = useContext(contractContext);
-  const { filterString } = useContext(filterContext);
 
   const [nfts, setNfts] = useState([]);
 
@@ -28,26 +25,21 @@ export const ItemList = () => {
   }
 
   useEffect(() => {
-    // let t = qs.parse(
-    //   "search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=Butt&search[stringTraits][0][values][0]=Wounded&search[stringTraits][1][name]=Dick&search[stringTraits][1][values][0]=Flower&search[stringTraits][1][values][1]=Purpy&search[stringTraits][1][values][2]=Tentacle&search[stringTraits][1][values][3]=Oh%20Canada"
-    // );
-    // console.log(t);
-    // console.log(filterString, 35);
-    let url = `http://127.0.0.1:1234/nft/${contractAddress}?`;
-    if (filterString != null) {
-      url = `http://127.0.0.1:1234/nft/${contractAddress}?${filterString}`;
-    }
-    // console.log(url);
-    fetch(url)
-      // fetch(`http://127.0.0.1:1234/nft/${contractAddress}`)
+    let t = qs.parse(
+      "search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=Butt&search[stringTraits][0][values][0]=Wounded&search[stringTraits][1][name]=Dick&search[stringTraits][1][values][0]=Flower&search[stringTraits][1][values][1]=Purpy&search[stringTraits][1][values][2]=Tentacle&search[stringTraits][1][values][3]=Oh%20Canada"
+    );
+
+    console.log(t);
+    fetch(
+      `http://127.0.0.1:1234/nft/${contractAddress}?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=Background&search[stringTraits][0][values][0]=Buds`
+    )
       .then((res) => res.json())
       .then((res) => {
-        console.log(44, res);
         let data = res;
 
         setNfts(data.nft);
       });
-  }, [contractAddress, filterString]);
+  }, []);
 
   return (
     <>

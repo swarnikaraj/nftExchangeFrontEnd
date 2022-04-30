@@ -8,12 +8,15 @@ export const filterContext = createContext({
 });
 
 export const FilterContextProvider = ({ children }) => {
-  const [filterString, setFilterString] = useState("");
+  const [filterString, setFilterString] = useState({});
 
   const makeFilterString = (filterObj) => {
     console.log(filterObj);
     const filteredStr = qs.stringify(filterObj, { encode: false });
-    setFilterString(filteredStr);
+    filterString.filts = filteredStr;
+
+    console.log("mai he hu", filteredStr);
+    // setFilterString(filteredStr);
   };
 
   return (
