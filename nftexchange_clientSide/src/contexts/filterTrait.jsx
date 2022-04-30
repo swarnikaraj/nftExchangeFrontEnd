@@ -16,7 +16,13 @@ export const FilterContextProvider = ({ children }) => {
     filterString.filts = filteredStr;
 
     console.log("mai he hu", filteredStr);
+    
+      
+    
+
     // setFilterString(filteredStr);
+
+
   };
 
   return (

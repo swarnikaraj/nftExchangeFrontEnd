@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [arr1, setArr1] = useState([]);
+  const [address, setAddress] = useState("");
   var att;
   let attributesFinal = [];
 
@@ -93,7 +94,7 @@ function App() {
       body: JSON.stringify(attributesFinal),
     };
     fetch(
-      "http://localhost:1234/contract/update/0xe785E82358879F061BC3dcAC6f0444462D4b5330",
+      `http://localhost:1234/contract/update/${address}`,
       requestOptions
     )
       .then((response) => response.json())
@@ -102,20 +103,31 @@ function App() {
     setArr1(arr);
   }
 
-
-
-
   useEffect(() => {
-    fetch(
-      "http://localhost:1234/nft/all/0xe785E82358879F061BC3dcAC6f0444462D4b5330"
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        parseallsecond(res);
-      });
-  }, []);
+    addData(address)
+    
+   }, [address]);
 
-  return <div className="App"></div>;
+  async function addData(address) {
+    try {
+      var res = await fetch(
+        `http://localhost:1234/nft/all/${address}`
+      );
+      var dta = await res.json();
+
+      parseallsecond(dta);
+    } catch (err) {}
+  }
+
+  return (
+    <div className="App">
+      <input
+        placeholder="put address"
+        onChange={(e) => setAddress(e.target.value)}
+      />
+      <button onClick={() => addData()}>mai button hu</button>
+    </div>
+  );
 }
 
 export default App;
