@@ -93,7 +93,7 @@ function App() {
       body: JSON.stringify(attributesFinal),
     };
     fetch(
-      "http://localhost:1234/contract/update/0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB",
+      "http://localhost:1234/contract/update/0xe785E82358879F061BC3dcAC6f0444462D4b5330",
       requestOptions
     )
       .then((response) => response.json())
@@ -104,10 +104,10 @@ function App() {
 
 
 
-  
+
   useEffect(() => {
     fetch(
-      "http://localhost:1234/nft/all/0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB"
+      "http://localhost:1234/nft/all/0xe785E82358879F061BC3dcAC6f0444462D4b5330"
     )
       .then((res) => res.json())
       .then((res) => {

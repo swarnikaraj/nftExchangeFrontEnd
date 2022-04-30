@@ -1,9 +1,12 @@
 import { createContext } from "react";
 import { useState } from "react";
 
-export const contractContext = createContext({ contractAddress: "", addContractAddress: () => {} });
+export const contractContext = createContext({
+  contractAddress: "",
+  addContractAddress: () => {},
+});
 
-export const NftContextProvider = ({ children }) => {
+export const ContractContextProvider = ({ children }) => {
   const [contractAddress, setContractAddress] = useState("");
 
   const addContractAddress = (address) => {

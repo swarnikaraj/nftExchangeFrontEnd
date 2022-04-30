@@ -1,35 +1,40 @@
 import { MdFilterList, MdViewHeadline } from "react-icons/md";
 import { FaAngleDown } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext, memo } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Searchbox } from "../profile/searchbox";
 import { Statusfilter } from "./statusFilter";
 import { Pricefilter } from "./priceFilter";
+import { filterContext } from "../../contexts/filterTrait";
+import { contractContext } from "../../contexts/contractsContext";
 
 export const Sidebar = () => {
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(true);
   const [arr, setArr] = useState([]);
+  const { makeFilterString } = useContext(filterContext);
+  const { contractAddress } = useContext(contractContext);
 
-  const [filtObj, setFiltObj] = useState({});
+  // const [stringTraits, setstringTraits] = useState([]);
+  let stringTraits = [];
 
-  var className = clicked ? "hidden py-2 space-y-2 " : "py-2 space-y-2";
+  var customClassName = clicked ? "hidden py-2 space-y-2 " : "py-2 space-y-2";
 
-  function oncheck(trait_type, value) {
-    
-
-    console.log(filtObj);
+  function oncheck() {
+    let newObj = {};
+    newObj = { stringTraits: stringTraits };
+    let result = { search: newObj };
+    console.log(result);
+    makeFilterString(result);
   }
 
   useEffect(() => {
-    fetch(
-      "http://localhost:1234/contract/0xED5AF388653567Af2F388E6224dC7C4b3241C544"
-    )
+    fetch(`http://localhost:1234/contract/byAddress/${contractAddress}`)
       .then((res) => res.json())
       .then((res) => {
-        let data = JSON.parse(res.nft[0].attributes);
+        let data = JSON.parse(res.contract[0].attributes);
         setArr(data);
       });
-  }, []);
+  }, [contractAddress]);
 
   return (
     <>
@@ -55,9 +60,9 @@ export const Sidebar = () => {
                   className="flex items-center w-full p-2 text-base font-normal transition duration-75 rounded-lg text-black-900 group hover:bg-gray-100 dark:text-black dark:hover:bg-transparent-700"
                   aria-controls="dropdown-opt"
                   data-collapse-toggle="dropdown-opt"
-                  onClick={(e) => {
-                    setClicked((p) => !p);
-                    console.log(e.target);
+                  value={dta}
+                  onClick={() => {
+                    setClicked(!clicked);
                   }}
                 >
                   <div className="flex items-center justify-between w-full">
@@ -82,7 +87,7 @@ export const Sidebar = () => {
                     </div>
                   </div>
                 </button>
-                <ul id="dropdown-opt" className={className}>
+                <ul id="dropdown-opt" className={customClassName}>
                   <Searchbox />
 
                   {dta.traits.map((list) => (
@@ -92,6 +97,46 @@ export const Sidebar = () => {
                         type="checkbox"
                         value={list.count}
                         id="flexCheckDefault"
+                        onChange={(e) => {
+                          //oncheck(e.target.checked, list);
+
+                          // add to list
+                          if (e.target.checked) {
+                            var found = stringTraits.findIndex(
+                              (x) => x.name === dta.trait_type
+                            );
+
+                            if (found == -1) {
+                              let valueArr = [];
+                              valueArr.push(list.trait);
+                              stringTraits = [
+                                ...stringTraits,
+                                {
+                                  name: dta.trait_type,
+                                  values: valueArr,
+                                },
+                              ];
+                            } else {
+                              stringTraits[found].values.push(list.trait);
+                            }
+                          } else {
+                            //remove from list
+                            var found = stringTraits.findIndex(
+                              (x) => x.name === dta.trait_type
+                            );
+                            var z = "values";
+                            var k = stringTraits[found].values;
+                            if (k.length == 1) {
+                              stringTraits = stringTraits.filter(
+                                (item) => item.name != dta.trait_type
+                              );
+                            } else {
+                              var p = k.filter((item) => item != list.trait);
+                              stringTraits[found].values = p;
+                            }
+                          }
+                          oncheck();
+                        }}
                       />
                       <div className="flex justify-between">
                         <label

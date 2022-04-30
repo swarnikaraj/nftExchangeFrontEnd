@@ -7,7 +7,6 @@ import { FaEthereum } from "react-icons/fa";
 
 export const Cards = ({ rows, dataArr }) => {
   const [clicked, setClicked] = useState(false);
-  console.log(dataArr);
   return (
     <>
       <div className="flex flex-col md:w-3/4">
