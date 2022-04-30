@@ -11,16 +11,8 @@ import { contractContext } from "../../contexts/contractsContext";
 export const Sidebar = () => {
   const [clicked, setClicked] = useState(true);
   const [arr, setArr] = useState([]);
-<<<<<<< Updated upstream
-  const { makeFilterString } = useContext(filterContext);
-  const { contractAddress } = useContext(contractContext);
-
-  // const [stringTraits, setstringTraits] = useState([]);
-  let stringTraits = [];
-=======
 const stringTraits=[]
   const [filtObj, setFiltObj] = useState({});
->>>>>>> Stashed changes
 
   var customClassName = clicked ? "hidden py-2 space-y-2 " : "py-2 space-y-2";
 
@@ -29,11 +21,7 @@ const stringTraits=[]
     newObj = { stringTraits: stringTraits };
     let result = { search: newObj };
     console.log(result);
-<<<<<<< Updated upstream
-    makeFilterString(result);
-=======
     //makeFilterString(result);
->>>>>>> Stashed changes
   }
 
   useEffect(() => {
