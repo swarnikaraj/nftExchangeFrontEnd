@@ -10,6 +10,7 @@ export const ContractContextProvider = ({ children }) => {
   const [contractAddress, setContractAddress] = useState("");
 
   const addContractAddress = (address) => {
+    console.log("mai chl gya", address);
     setContractAddress(address);
   };
 
