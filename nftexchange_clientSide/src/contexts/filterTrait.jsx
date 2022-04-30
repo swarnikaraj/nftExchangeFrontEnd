@@ -7,12 +7,12 @@ export const filterContext = createContext({
   makeFilterString: () => {},
 });
 
-export const filterContextProvider = ({ children }) => {
+export const FilterContextProvider = ({ children }) => {
   const [filterString, setFilterString] = useState("");
 
   const makeFilterString = (filterObj) => {
-    const filteredStr = qs.stringify(filterObj);
-    //manipulate  and ge tresult
+    console.log(filterObj);
+    const filteredStr = qs.stringify(filterObj, { encode: false });
     setFilterString(filteredStr);
   };
 
