@@ -55,7 +55,8 @@ export const Cards = ({ rows }) => {
     const data = await fetch(urlFinal);
     const parsedData = await data.json();
 
-    nfts.concat(parsedData.nft);
+    setNfts(nfts.concat(parsedData.nft));
+
     setTotalResult(parsedData.totalResults);
     setLoading(false);
   }
@@ -87,9 +88,7 @@ export const Cards = ({ rows }) => {
           dataLength={nfts.length}
           next={fetchMoreData}
           hasMore={nfts.length !== totalResults}
-          loader={
-            <h4 style={{ margin: "10px", color: "blueviolet" }}>Loading...</h4>
-          }
+          loader={<h4 style={{ margin: "10px", color: "blue" }}>Loading...</h4>}
         >
           <div className="ml-5 mr-5 w-8/10 ">
             <div className="container px-4 mx-auto my-12 border border-gray-200 md:px-3">
