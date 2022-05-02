@@ -87,7 +87,9 @@ export const Cards = ({ rows }) => {
           dataLength={nfts.length}
           next={fetchMoreData}
           hasMore={nfts.length !== totalResults}
-          loader={<h4>Loading...</h4>}
+          loader={
+            <h4 style={{ margin: "10px", color: "blueviolet" }}>Loading...</h4>
+          }
         >
           <div className="ml-5 mr-5 w-8/10 ">
             <div className="container px-4 mx-auto my-12 border border-gray-200 md:px-3">
