@@ -13,7 +13,8 @@ export const ItemList = () => {
   const [items, setItems] = useState(true);
   const [activity, setActivity] = useState(false);
   const { contractAddress } = useContext(contractContext);
-  const { filterString } = useContext(filterContext);
+  const { filterString, filterStrRef } = useContext(filterContext);
+  const [page, setPage] = useState(1);
 
   const [nfts, setNfts] = useState([]);
 
@@ -26,26 +27,43 @@ export const ItemList = () => {
     setItems(false);
   }
 
-  useEffect(() => {
-    let url = `http://127.0.0.1:1234/nft/`;
+  // useEffect(() => {
+  //   fetchAndSetNft();
+  // }, [contractAddress, filterStrRef.current, page]);
 
+  // function fetchAndSetNft() {
+  //   let url = `http://127.0.0.1:1234/nft/${contractAddress}?page=${page}&size=16`;
 
-    console.log(filterString, "filterd string");
+  //   console.log(filterStrRef.current, "filterd string mai bs yhi pr hu");
 
-    let urlFinal = filterString.filts
-      ? url + `${contractAddress}?${filterString.filts}`
-      : url + `${contractAddress}`;
+  //   let urlFinal = filterStrRef.current
+  //     ? url + `?${filterStrRef.current}`
+  //     : url;
 
-    console.log(urlFinal, "i am final");
-    fetch(urlFinal)
-      .then((res) => res.json())
-      
-      .then((res) => {
-        let data = res;
-        console.log(res, "eesf");
-        setNfts(data.nft);
-      });
-  }, [contractAddress, filterString.filts]);
+  //   console.log(urlFinal, "i am final");
+  //   fetch(urlFinal)
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       let data = res;
+  //       console.log(res, "eesf");
+  //       setNfts(data.nft);
+  //     });
+  // }
+
+  // const onScrollToEnd = () => {
+  //   setPage(page + 1);
+  //   console.log(page, "page is");
+  //   window.scrollTo(0);
+  // };
+
+  // window.onscroll = function () {
+  //   if (
+  //     window.innerHeight + document.documentElement.scrollTop ===
+  //     document.documentElement.offsetHeight
+  //   ) {
+  //     onScrollToEnd();
+  //   }
+  // };
 
   return (
     <>

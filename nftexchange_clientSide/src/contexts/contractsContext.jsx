@@ -14,6 +14,8 @@ export const ContractContextProvider = ({ children }) => {
     setContractAddress(address);
   };
 
+ 
+
   return (
     <contractContext.Provider value={{ contractAddress, addContractAddress }}>
       {children}

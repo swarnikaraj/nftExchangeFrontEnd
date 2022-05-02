@@ -4,12 +4,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ContractContextProvider } from "./contexts/contractsContext";
-
+import {NftContextProvider} from './contexts/nftContext'
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ContractContextProvider>
+      <NftContextProvider>
       <App />
+      </NftContextProvider>
     </ContractContextProvider>
   </React.StrictMode>
 );
