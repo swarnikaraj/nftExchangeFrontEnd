@@ -9,6 +9,7 @@ export const Checkbox = () => {
   const { contractAddress } = useContext(contractContext);
   
   const { filterString, updateFilterString} = useContext(filterContext);
+  
   //   const [type, setType] = useState("none");
   //   const [val, setVal] = useState("none");
   //   const [obj, setObj] = useState({

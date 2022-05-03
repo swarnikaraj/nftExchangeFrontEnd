@@ -11,31 +11,34 @@ import InfiniteScroll from "react-infinite-scroll-component";
 export const Cards = ({ rows }) => {
   const [clicked, setClicked] = useState(false);
   const [nfts, setNfts] = useState([]);
-
-  const { contractAddress } = useContext(contractContext);
-  const { filterString, updateFilterString} = useContext(filterContext);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [totalResults, setTotalResult] = useState(0);
+  const [arr, setArr] = useState([]);
+  const [filters, setFilters] = useState([]);
+  const { contractAddress } = useContext(contractContext);
+  
+  const { filterString, updateFilterString} = useContext(filterContext);
 
   useEffect(() => {
     fetchAndSetNft();
   }, [contractAddress, filterString, page]);
 
   async function fetchAndSetNft() {
-    let url = `http://127.0.0.1:1234/nft/${contractAddress}?page=${page}&size=16`;
+    let url = `http://127.0.0.1:1234/nft/${contractAddress}?`;
 
     console.log(filterString, "filterd string mai bs yhi pr hu");
 
     let urlFinal = filterString
-      ? url + `?${filterString}`
-      : url;
+      ? url + `${filterString}` + `&page=${page}&size=15`
+      : url + `&page=${page}&size=15`;
     setLoading(true);
     console.log(urlFinal, "i am final");
     const data = await fetch(urlFinal);
     const parsedData = await data.json();
-
+   console.log(37,parsedData)
     setNfts(parsedData.nft);
+    console.log(nfts,"39")
     setTotalResult(parsedData.totalResults);
     setLoading(false);
   }
@@ -43,13 +46,13 @@ export const Cards = ({ rows }) => {
   async function fetchMoreData() {
     setPage(page + 1);
 
-    let url = `http://127.0.0.1:1234/nft/${contractAddress}?page=${page}&size=16`;
+    let url = `http://127.0.0.1:1234/nft/${contractAddress}`;
 
     console.log(filterString, "filterd string mai bs yhi pr hu");
 
     let urlFinal = filterString
-      ? url + `?${filterString}`
-      : url;
+      ? url + `?${filterString}` + `&page=${page}&size=15`
+      : url + `&page=${page}&size=15`;
     setLoading(true);
     console.log(urlFinal, "i am final");
     const data = await fetch(urlFinal);
@@ -147,6 +150,7 @@ export const Cards = ({ rows }) => {
             </div>
           </div>
         </InfiniteScroll>
+
       </div>
     </>
   );

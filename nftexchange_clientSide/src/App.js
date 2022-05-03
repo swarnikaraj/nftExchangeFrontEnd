@@ -18,7 +18,7 @@ function App() {
           <Profile />
 
           <ItemList />
-          <Checkbox/>
+          
         </FilterContextProvider>
       </ContractContextProvider>
 

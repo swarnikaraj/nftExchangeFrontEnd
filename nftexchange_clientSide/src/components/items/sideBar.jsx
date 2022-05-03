@@ -7,25 +7,26 @@ import { Statusfilter } from "./statusFilter";
 import { Pricefilter } from "./priceFilter";
 import { filterContext } from "../../contexts/filterTrait";
 import { contractContext } from "../../contexts/contractsContext";
-
+const qs = require("qs");
 export const Sidebar = () => {
-  const [clicked, setClicked] = useState(true);
+  const [clicked, setClicked] = useState([]);
   const [arr, setArr] = useState([]);
+  const [filters, setFilters] = useState([]);
   let stringTraits = [];
   const [filtObj, setFiltObj] = useState({});
   const { contractAddress, addContractAddress } = useContext(contractContext);
-  const { updateFilterString,filterString } = useContext(filterContext);
+  const { updateFilterString, filterString } = useContext(filterContext);
 
   var customClassName = clicked ? "hidden py-2 space-y-2 " : "py-2 space-y-2";
 
-  function oncheck() {
-    let newObj = {};
-    newObj = { stringTraits: stringTraits };
-    let result = { search: newObj };
-    console.log(result);
-    
-  }
+  
 
+  useEffect(() => {
+    console.log(clicked);
+  }, [clicked]);
+
+
+  function getfilters() {}
   useEffect(() => {
     fetch(
       `http://localhost:1234/contract/byAddress/0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB`
@@ -37,6 +38,70 @@ export const Sidebar = () => {
         setArr(data);
       });
   }, [contractAddress]);
+
+
+  useEffect(() => {
+    makestring(filters);
+    console.log("filters applied", filters);
+  }, [filters]);
+
+  function makestring(filterarray) {
+    var newarray = [];
+    for (let i = 0; i < filterarray.length; i++) {
+      var found = newarray.findIndex(
+        (x) => x.name === filterarray[i].trait_type
+      );
+
+      if (found == -1) {
+        let valueArr = [];
+        valueArr.push(filterarray[i].trait);
+        newarray = [
+          ...newarray,
+          {
+            name: filterarray[i].trait_type,
+            values: valueArr,
+          },
+        ];
+      } else {
+        newarray[found].values.push(filterarray[i].trait);
+      }
+    }
+
+    console.log("my newarray", newarray);
+    let newObj = {};
+    newObj = { stringTraits: newarray };
+    let result = { search: newObj };
+
+    const filteredStr = qs.stringify(result, { encode: false });
+
+    console.log(filteredStr, " I am the final query");
+    
+     updateFilterString(filteredStr)
+        console.log(filterString, " ia m saved in context")
+
+  }
+
+
+
+  const selectFilter = (event) => {
+    const selectedvalue = event.target.value;
+    const selectedname = event.target.name;
+
+    if (
+      filters.some(
+        (e) => e.trait === selectedvalue && e.trait_type === selectedname
+      )
+    ) {
+      const newfilters = filters.filter((filt) => filt.trait !== selectedvalue);
+      setFilters(newfilters);
+    } else {
+      const newfilters = [...filters];
+      newfilters.push({ trait_type: selectedname, trait: selectedvalue });
+      setFilters(newfilters);
+    }
+  };
+
+
 
   return (
     <>
@@ -55,16 +120,25 @@ export const Sidebar = () => {
             <Pricefilter />
             <Statusfilter />
 
-            {arr?.map((dta) => (
+            {arr?.map(({ trait_type, traits, trait_type_count }) => (
               <li key={uuidv4()}>
                 <button
                   type="button"
                   className="flex items-center w-full p-2 text-base font-normal transition duration-75 rounded-lg text-black-900 group hover:bg-gray-100 dark:text-black dark:hover:bg-transparent-700"
                   aria-controls="dropdown-opt"
                   data-collapse-toggle="dropdown-opt"
-                  value={dta}
                   onClick={() => {
-                    setClicked(!clicked);
+                    if (clicked.includes(trait_type)) {
+                      let newarr = [...clicked].filter(
+                        (e) => e !== trait_type
+                      );
+
+                      setClicked(newarr);
+                    } else {
+                      let added = [...clicked];
+                      added.push(trait_type);
+                      setClicked(added);
+                    }
                   }}
                 >
                   <div className="flex items-center justify-between w-full">
@@ -74,7 +148,7 @@ export const Sidebar = () => {
                         className="inline-block ml-2"
                         // sidebar-toggle-item
                       >
-                        {dta.trait_type}
+                        {trait_type}
                       </label>
                     </div>
                     <div className="flex items-center">
@@ -82,80 +156,53 @@ export const Sidebar = () => {
                         className="inline-block mr-1"
                         // sidebar-toggle-item
                       >
-                        {dta.trait_type_count}
+                        {trait_type_count}
                       </label>
 
                       <FaAngleDown />
                     </div>
                   </div>
                 </button>
-                <ul id="dropdown-opt" className={customClassName}>
-                  <Searchbox />
 
-                  {dta.traits.map((list) => (
-                    <li key={uuidv4()} className="overflow-y-scroll">
-                      <input
-                        className="float-left w-4 h-4 mt-1 mr-2 align-top transition duration-200 bg-white bg-center bg-no-repeat bg-contain border border-gray-300 rounded-sm appearance-none cursor-pointer form-check-input checked:bg-blue-600 checked:border-blue-600 focus:outline-none"
-                        type="checkbox"
-                        id="flexCheckDefault"
-                        onChange={(e) => {
-                          //oncheck(e.target.checked, list);
-                          // add to list
-                          if (e.target.checked) {
-                            var found = stringTraits.findIndex(
-                              (x) => x.name === dta.trait_type
-                            );
+                {clicked.includes(trait_type) && (
+                  <ul className="" id={trait_type}>
+                    <Searchbox />
 
-                            if (found == -1) {
-                              let valueArr = [];
-                              valueArr.push(list.trait);
-                              stringTraits = [
-                                ...stringTraits,
-                                {
-                                  name: dta.trait_type,
-                                  values: valueArr,
-                                },
-                              ];
-                            } else {
-                              stringTraits[found].values.push(list.trait);
-                            }
-                          } else {
-                            //remove from list
-                            var found = stringTraits.findIndex(
-                              (x) => x.name === dta.trait_type
-                            );
-                            var z = "values";
-                            var k = stringTraits[found].values;
-                            if (k.length == 1) {
-                              stringTraits = stringTraits.filter(
-                                (item) => item.name != dta.trait_type
-                              );
-                            } else {
-                              var p = k.filter((item) => item != list.trait);
-                              stringTraits[found].values = p;
-                            }
-                          }
-                          oncheck();
-                        }}
-                      />
+                    {traits.map(({trait,count}) => (
+                      <li key={uuidv4()} className="overflow-y-scroll">
+                        <input
+                          className="float-left w-4 h-4 mt-1 mr-2 align-top transition duration-200 bg-white bg-center bg-no-repeat bg-contain border border-gray-300 rounded-sm appearance-none cursor-pointer form-check-input checked:bg-blue-600 checked:border-blue-600 focus:outline-none"
+                          value={trait}
+                  name={trait_type}
+                  onChange={selectFilter}
+                  checked={
+                    filters.some(
+                      (e) => e.trait === trait && e.trait_type === trait_type
+                    )
+                      ? true
+                      : false
+                  }
+                  type="checkbox"
+                        />
 
-                      <div className="flex justify-between">
-                        <label
-                          className="inline-block text-gray-800 form-check-label"
-                          htmlFor="flexCheckDefault"
-                        >
-                          {list.trait}
-                        </label>
-                        <label
-                          className="inline-block text-gray-800 form-check-label"
-                          htmlFor="flexCheckDefault"
-                        >
-                          {list.count}
-                        </label>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                        <div className="flex justify-between">
+                          <label
+                            className="inline-block text-gray-800 form-check-label"
+                            htmlFor="flexCheckDefault"
+                          >
+                            {trait}
+                          </label>
+                          <label
+                            className="inline-block text-gray-800 form-check-label"
+                            htmlFor="flexCheckDefault"
+                          >
+                            {count}
+                          </label>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
           </ul>
