@@ -6,7 +6,7 @@ import { ItemList } from "./components/items/itemList";
 import { Nav } from "./components/navbar/navbar";
 import { ContractContextProvider } from './contexts/contractsContext'
 import { FilterContextProvider } from './contexts/filterTrait'
-
+import {Checkbox} from './components/items/checkinput'
 function App() {
   return (
     <div className="App">
@@ -18,6 +18,7 @@ function App() {
           <Profile />
 
           <ItemList />
+          <Checkbox/>
         </FilterContextProvider>
       </ContractContextProvider>
 

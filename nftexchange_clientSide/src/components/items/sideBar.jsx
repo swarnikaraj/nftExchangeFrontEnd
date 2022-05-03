@@ -9,57 +9,23 @@ import { filterContext } from "../../contexts/filterTrait";
 import { contractContext } from "../../contexts/contractsContext";
 
 export const Sidebar = () => {
-  const [closed, setClosed] = useState([]);
-  const [opened, setOpened] = useState([]);
-
+  const [clicked, setClicked] = useState(true);
   const [arr, setArr] = useState([]);
   let stringTraits = [];
-  const [filters, setFilters] = useState([]);
-  const [checked, setChecked] = useState([]);
-
+  const [filtObj, setFiltObj] = useState({});
   const { contractAddress, addContractAddress } = useContext(contractContext);
-  const { makeFilterString } = useContext(filterContext);
+  const { updateFilterString,filterString } = useContext(filterContext);
 
-  // var customClassName = "hidden py-2 space-y-2 " || "py-2 space-y-2";
+  var customClassName = clicked ? "hidden py-2 space-y-2 " : "py-2 space-y-2";
 
   function oncheck() {
-    console.log(stringTraits, "filter array");
+    let newObj = {};
+    newObj = { stringTraits: stringTraits };
+    let result = { search: newObj };
+    console.log(result);
+    
   }
 
-  const handleCheck = (event, t) => {
-    var updatedList;
-    if (event.target.checked) {
-      console.log(t, event.target.value, "aa gya");
-      let newObj = {
-        name: t,
-        values: event.target.value,
-      };
-      var t = checked.concat([newObj]);
-
-      setChecked(t);
-      // {
-      //   name: t,
-      //   values: event.target.value,
-      // },
-    } else {
-      console.log(t, event.target.value, "chli gai");
-      // updatedList = updatedList.filter((x) => x.values !== event.target.value);
-    }
-    // setChecked(updatedList);
-    // console.log(checked, "checlsfjsf");
-  };
-  function handleClassChange(e) {
- 
-    var d = e.currentTarget.id;
-    var el = document.getElementById(`${d}`).nextSibling;
-    if (el.style.display === "none") {
-      el.style.display = "block";
-    } else {
-      el.style.display = "none";
-    }
-  }
-
-  function getfilters() {}
   useEffect(() => {
     fetch(
       `http://localhost:1234/contract/byAddress/0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB`
@@ -90,17 +56,15 @@ export const Sidebar = () => {
             <Statusfilter />
 
             {arr?.map((dta) => (
-              <li key={uuidv4()} >
+              <li key={uuidv4()}>
                 <button
                   type="button"
-                  className="flex items-center w-full p-2 text-base font-normal transition duration-75 rounded-lg text-black-900 group hover:bg-gray-100 dark:text-black dark:hover:bg-transparent-700 my-btn"
+                  className="flex items-center w-full p-2 text-base font-normal transition duration-75 rounded-lg text-black-900 group hover:bg-gray-100 dark:text-black dark:hover:bg-transparent-700"
                   aria-controls="dropdown-opt"
                   data-collapse-toggle="dropdown-opt"
                   value={dta}
-                  id={uuidv4()}
-                  
-                  onClick={(e) => {
-                    handleClassChange(e);
+                  onClick={() => {
+                    setClicked(!clicked);
                   }}
                 >
                   <div className="flex items-center justify-between w-full">
@@ -116,7 +80,7 @@ export const Sidebar = () => {
                     <div className="flex items-center">
                       <label
                         className="inline-block mr-1"
-                        sidebar-toggle-item="true"
+                        // sidebar-toggle-item
                       >
                         {dta.trait_type_count}
                       </label>
@@ -125,21 +89,54 @@ export const Sidebar = () => {
                     </div>
                   </div>
                 </button>
-
-                <ul id="dropdown-opt" style={{ display: "none" }}>
+                <ul id="dropdown-opt" className={customClassName}>
                   <Searchbox />
 
                   {dta.traits.map((list) => (
                     <li key={uuidv4()} className="overflow-y-scroll">
                       <input
-                        value={list.trait}
                         className="float-left w-4 h-4 mt-1 mr-2 align-top transition duration-200 bg-white bg-center bg-no-repeat bg-contain border border-gray-300 rounded-sm appearance-none cursor-pointer form-check-input checked:bg-blue-600 checked:border-blue-600 focus:outline-none"
                         type="checkbox"
                         id="flexCheckDefault"
-                        onChange={(e) => handleCheck(e, dta.trait_type)}
-                        // onChange={(e) => {
-                        //   handleCheck(e, dta.trait_type);
-                        // }}
+                        onChange={(e) => {
+                          //oncheck(e.target.checked, list);
+                          // add to list
+                          if (e.target.checked) {
+                            var found = stringTraits.findIndex(
+                              (x) => x.name === dta.trait_type
+                            );
+
+                            if (found == -1) {
+                              let valueArr = [];
+                              valueArr.push(list.trait);
+                              stringTraits = [
+                                ...stringTraits,
+                                {
+                                  name: dta.trait_type,
+                                  values: valueArr,
+                                },
+                              ];
+                            } else {
+                              stringTraits[found].values.push(list.trait);
+                            }
+                          } else {
+                            //remove from list
+                            var found = stringTraits.findIndex(
+                              (x) => x.name === dta.trait_type
+                            );
+                            var z = "values";
+                            var k = stringTraits[found].values;
+                            if (k.length == 1) {
+                              stringTraits = stringTraits.filter(
+                                (item) => item.name != dta.trait_type
+                              );
+                            } else {
+                              var p = k.filter((item) => item != list.trait);
+                              stringTraits[found].values = p;
+                            }
+                          }
+                          oncheck();
+                        }}
                       />
 
                       <div className="flex justify-between">

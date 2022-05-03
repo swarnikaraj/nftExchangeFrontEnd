@@ -13,22 +13,22 @@ export const Cards = ({ rows }) => {
   const [nfts, setNfts] = useState([]);
 
   const { contractAddress } = useContext(contractContext);
-  const { filterString, filterStrRef } = useContext(filterContext);
+  const { filterString, updateFilterString} = useContext(filterContext);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [totalResults, setTotalResult] = useState(0);
 
   useEffect(() => {
     fetchAndSetNft();
-  }, [contractAddress, filterStrRef.current, page]);
+  }, [contractAddress, filterString, page]);
 
   async function fetchAndSetNft() {
     let url = `http://127.0.0.1:1234/nft/${contractAddress}?page=${page}&size=16`;
 
-    console.log(filterStrRef.current, "filterd string mai bs yhi pr hu");
+    console.log(filterString, "filterd string mai bs yhi pr hu");
 
-    let urlFinal = filterStrRef.current
-      ? url + `?${filterStrRef.current}`
+    let urlFinal = filterString
+      ? url + `?${filterString}`
       : url;
     setLoading(true);
     console.log(urlFinal, "i am final");
@@ -45,10 +45,10 @@ export const Cards = ({ rows }) => {
 
     let url = `http://127.0.0.1:1234/nft/${contractAddress}?page=${page}&size=16`;
 
-    console.log(filterStrRef.current, "filterd string mai bs yhi pr hu");
+    console.log(filterString, "filterd string mai bs yhi pr hu");
 
-    let urlFinal = filterStrRef.current
-      ? url + `?${filterStrRef.current}`
+    let urlFinal = filterString
+      ? url + `?${filterString}`
       : url;
     setLoading(true);
     console.log(urlFinal, "i am final");
@@ -89,6 +89,7 @@ export const Cards = ({ rows }) => {
           next={fetchMoreData}
           hasMore={nfts.length !== totalResults}
           loader={<h4 style={{ margin: "10px", color: "blue" }}>Loading...</h4>}
+          scrollableTarget="scrollableDiv"
         >
           <div className="ml-5 mr-5 w-8/10 ">
             <div className="container px-4 mx-auto my-12 border border-gray-200 md:px-3">

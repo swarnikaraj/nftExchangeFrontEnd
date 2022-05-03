@@ -13,7 +13,7 @@ export const ItemList = () => {
   const [items, setItems] = useState(true);
   const [activity, setActivity] = useState(false);
   const { contractAddress } = useContext(contractContext);
-  const { filterString, filterStrRef } = useContext(filterContext);
+  const { filterString, updateFilterString} = useContext(filterContext);
   const [page, setPage] = useState(1);
 
   const [nfts, setNfts] = useState([]);
@@ -46,13 +46,14 @@ export const ItemList = () => {
   //     .then((res) => {
   //       let data = res;
   //       console.log(res, "eesf");
-  //       setNfts(data.nft);
+  //       setNfts(nfts.concat(data.nft));
   //     });
   // }
 
   // const onScrollToEnd = () => {
   //   setPage(page + 1);
   //   console.log(page, "page is");
+     
   //   window.scrollTo(0);
   // };
 
