@@ -19,12 +19,9 @@ export const Sidebar = () => {
 
   var customClassName = clicked ? "hidden py-2 space-y-2 " : "py-2 space-y-2";
 
-  
-
   useEffect(() => {
     console.log(clicked);
   }, [clicked]);
-
 
   function getfilters() {}
   useEffect(() => {
@@ -38,7 +35,6 @@ export const Sidebar = () => {
         setArr(data);
       });
   }, [contractAddress]);
-
 
   useEffect(() => {
     makestring(filters);
@@ -75,13 +71,10 @@ export const Sidebar = () => {
     const filteredStr = qs.stringify(result, { encode: false });
 
     console.log(filteredStr, " I am the final query");
-    
-     updateFilterString(filteredStr)
-        console.log(filterString, " ia m saved in context")
 
+    updateFilterString(filteredStr);
+    console.log(filterString, " ia m saved in context");
   }
-
-
 
   const selectFilter = (event) => {
     const selectedvalue = event.target.value;
@@ -100,8 +93,6 @@ export const Sidebar = () => {
       setFilters(newfilters);
     }
   };
-
-
 
   return (
     <>
@@ -129,9 +120,7 @@ export const Sidebar = () => {
                   data-collapse-toggle="dropdown-opt"
                   onClick={() => {
                     if (clicked.includes(trait_type)) {
-                      let newarr = [...clicked].filter(
-                        (e) => e !== trait_type
-                      );
+                      let newarr = [...clicked].filter((e) => e !== trait_type);
 
                       setClicked(newarr);
                     } else {
@@ -165,24 +154,25 @@ export const Sidebar = () => {
                 </button>
 
                 {clicked.includes(trait_type) && (
-                  <ul className="" id={trait_type}>
+                  <ul className="h-40 overflow-y-scroll " id={trait_type}>
                     <Searchbox />
 
-                    {traits.map(({trait,count}) => (
-                      <li key={uuidv4()} className="overflow-y-scroll">
+                    {traits.map(({ trait, count }) => (
+                      <li key={uuidv4()} className="overflow-y-scroll ">
                         <input
                           className="float-left w-4 h-4 mt-1 mr-2 align-top transition duration-200 bg-white bg-center bg-no-repeat bg-contain border border-gray-300 rounded-sm appearance-none cursor-pointer form-check-input checked:bg-blue-600 checked:border-blue-600 focus:outline-none"
                           value={trait}
-                  name={trait_type}
-                  onChange={selectFilter}
-                  checked={
-                    filters.some(
-                      (e) => e.trait === trait && e.trait_type === trait_type
-                    )
-                      ? true
-                      : false
-                  }
-                  type="checkbox"
+                          name={trait_type}
+                          onChange={selectFilter}
+                          checked={
+                            filters.some(
+                              (e) =>
+                                e.trait === trait && e.trait_type === trait_type
+                            )
+                              ? true
+                              : false
+                          }
+                          type="checkbox"
                         />
 
                         <div className="flex justify-between">
