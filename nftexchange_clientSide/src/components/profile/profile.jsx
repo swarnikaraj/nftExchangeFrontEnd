@@ -3,13 +3,14 @@ import { FaEthereum } from "react-icons/fa";
 import { FaAngleUp } from "react-icons/fa";
 import { AiOutlineStock } from "react-icons/ai";
 import { useState } from "react";
+import { ItemList } from "../items/itemList";
 export const Profile = () => {
   const [activity, setActivity] = useState(true);
   const [items, setItems] = useState(true);
   const [clicked, setClicked] = useState(false);
   const class_p = clicked ? "h-20" : "h-full";
 
-  function handleTextSize() {}
+  
 
   return (
     <>
@@ -85,6 +86,8 @@ export const Profile = () => {
 
         {/* items and activity buttons ends */}
       </div>
+
+      <ItemList/>
     </>
   );
 };

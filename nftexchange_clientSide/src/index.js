@@ -4,13 +4,19 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ContractContextProvider } from "./contexts/contractsContext";
+import { FilterContextProvider } from "./contexts/filterTrait";
 import {NftContextProvider} from './contexts/nftContext'
+import { BrowserRouter } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ContractContextProvider>
       <NftContextProvider>
-      <App />
+        <FilterContextProvider>
+        <BrowserRouter>
+         <App />
+      </BrowserRouter>
+      </FilterContextProvider>
       </NftContextProvider>
     </ContractContextProvider>
   </React.StrictMode>

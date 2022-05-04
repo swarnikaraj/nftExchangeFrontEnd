@@ -1,6 +1,6 @@
 import { MdFilterList, MdViewHeadline } from "react-icons/md";
 import { FaAngleDown } from "react-icons/fa";
-import { useState, useEffect, useContext} from "react";
+import { useState, useEffect, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Searchbox } from "../profile/searchbox";
 import { Statusfilter } from "./statusFilter";
@@ -12,7 +12,7 @@ export const Sidebar = () => {
   const [clicked, setClicked] = useState([]);
   const [arr, setArr] = useState([]);
   const [filters, setFilters] = useState([]);
-  
+
   const [filtObj, setFiltObj] = useState({});
   const { contractAddress, addContractAddress } = useContext(contractContext);
   const { updateFilterString, filterString } = useContext(filterContext);
