@@ -44,7 +44,7 @@ export const Searchbox = () => {
 
   return (
     <>
-      <div className="border w-3/6 ">
+      <div className="border w-1/2 mx-auto ">
         <input
           placeholder="Search Items, collections and accounts"
           type="text"
