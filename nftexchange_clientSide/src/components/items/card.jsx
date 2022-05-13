@@ -114,7 +114,7 @@ export const Cards = ({ rows }) => {
                       <div className="flex items-center justify-between px-4 pt-2 leading-tight">
                         <h1 className="text-lg">
                           <a
-                            className="text-black no-underline hover:underline"
+                            className="text-gray-200 no-underline hover:underline"
                             href="#"
                           >
                             {data.name}

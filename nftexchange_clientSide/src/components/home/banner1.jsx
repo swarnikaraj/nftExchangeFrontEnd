@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "../../styles/common.css";
 import { Searchbox } from "../searchBar/search";
 
@@ -5,6 +6,14 @@ import { BackgroundAnimation } from "./Animation";
 import { Btn1 } from "./btn1";
 import { Btn2 } from "./btn2";
 export const Banner1 = (props) => {
+  useEffect(() => {
+    fetch(
+      "https://api.opensea.io/api/v1/asset_contract/0x06012c8cf97bead5deae237070f9587f8e7a266d"
+    )
+      .then((res) => res.json())
+      .then((res) => console.log(res, "I am opensea api data"));
+  }, []);
+
   const commonStyles =
     "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] font-semibold flex justify-center items-center border-[8px] text-gradient2 border-900 text-sm white-glassmorphism ";
   return (
@@ -35,14 +44,14 @@ export const Banner1 = (props) => {
         </div>
 
         <div className="sm:w-full md:w-2/5  ">
-          <div className="bg-white rounded-lg shadow-lg">
+          <div className=" rounded-lg shadow-lg">
             <img
               src="https://images.unsplash.com/photo-1600054800747-be294a6a0d26?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80"
               alt="kch v"
               className="rounded-t-lg"
             />
             <div className="p-6">
-              <h2 className="font-bold mb-2 text-2xl text-purple-800">
+              <h2 className="font-bold mb-2 text-2xl text-purple-300">
                 Beanz Official
               </h2>
               <p className="text-purple-700 mb-2">by azuki</p>

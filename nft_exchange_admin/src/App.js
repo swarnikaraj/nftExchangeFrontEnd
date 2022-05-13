@@ -8,45 +8,6 @@ function App() {
   var att;
   let attributesFinal = [];
 
-  function parseall(arr) {
-    let obj = {};
-    var count = "count";
-    var trait = "trait";
-    for (let j = 0; j < arr.nft.length; j++) {
-      att = JSON.parse(arr.nft[j].tokenURI).attributes;
-      for (let i = 0; i < att.length; i++) {
-        var traits = att[i].trait_type;
-        if (obj[traits] === undefined) {
-          obj[traits] = [];
-        }
-        var found = obj[traits].findIndex((x) => x.trait === att[i].value);
-        if (found == -1) {
-          var newobj = {};
-          newobj[trait] = att[i].value;
-          newobj[count] = 1;
-          obj[traits].push(newobj);
-        } else {
-          obj[traits][found][count] = obj[traits][found][count] + 1;
-        }
-      }
-    }
-    // console.log(obj);
-
-    const requestOptions = {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(obj),
-    };
-    fetch(
-      "http://localhost:1234/contract/update/0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-
-    setArr1(arr);
-  }
-
   function parseallsecond(arr) {
     let obj = {};
     var count = "count";
@@ -76,7 +37,6 @@ function App() {
     var trait_type_count = "trait_type_count";
     var value = "traits";
     var keyValueObj = {};
-    console.log(obj);
 
     //let data = Object.entries(obj).map(([key, value]) => ({ [key]: value }));
     for (var key in obj) {
@@ -85,7 +45,7 @@ function App() {
       // console.log(obj[key])
       keyValueObj[value] = obj[key];
       keyValueObj[trait_type_count] = obj[key].length;
-      //console.log(keyValueObj)
+      // console.log(keyValueObj)
       attributesFinal.push(JSON.parse(JSON.stringify(keyValueObj)));
     }
     const requestOptions = {
@@ -93,28 +53,26 @@ function App() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(attributesFinal),
     };
-    fetch(
-      `http://localhost:1234/contract/update/${address}`,
-      requestOptions
-    )
+    fetch(`http://localhost:1234/contract/update/${address}`, requestOptions)
       .then((response) => response.json())
-      .then((data) => console.log(data));
-
-    setArr1(arr);
+      .then((data) => {
+        console.log(data);
+        setArr1(data);
+      });
   }
 
   useEffect(() => {
-    addData(address)
-    
-   }, [address]);
+    setAddress(address);
+    console.log(address);
+  }, [address]);
 
-  async function addData(address) {
+  async function addData() {
+    console.log(address);
+
     try {
-      var res = await fetch(
-        `http://localhost:1234/nft/all/${address}`
-      );
+      var res = await fetch(`http://localhost:1234/nft/all/${address}`);
       var dta = await res.json();
-
+      //console.log(dta)
       parseallsecond(dta);
     } catch (err) {}
   }
