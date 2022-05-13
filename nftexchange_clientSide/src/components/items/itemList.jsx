@@ -13,7 +13,7 @@ export const ItemList = () => {
   const [items, setItems] = useState(true);
   const [activity, setActivity] = useState(false);
   const { contractAddress } = useContext(contractContext);
-  const { filterString, updateFilterString} = useContext(filterContext);
+  const { filterString, updateFilterString } = useContext(filterContext);
   const [page, setPage] = useState(1);
 
   const [nfts, setNfts] = useState([]);
@@ -53,7 +53,7 @@ export const ItemList = () => {
   // const onScrollToEnd = () => {
   //   setPage(page + 1);
   //   console.log(page, "page is");
-     
+
   //   window.scrollTo(0);
   // };
 
@@ -92,8 +92,12 @@ export const ItemList = () => {
       <div className="flex flex-wrap justify-center ml-0 mr-0 ">
         {items && (
           <>
-            <Sidebar />
-            <Cards dataArr={nfts} />
+            <div className="  lg:w-1/5 md:w-1/5 sm:w-full lg:max-h-screen overflow-y-scroll sm:max-10 md:max-10">
+              <Sidebar />
+            </div>
+            <div className=" lg:w-3/4  md:w-3/4 sm:w-full  max-h-screen overflow-y-scroll ">
+              <Cards dataArr={nfts} />
+            </div>
           </>
         )}
 

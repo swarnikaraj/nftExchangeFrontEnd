@@ -96,7 +96,7 @@ export const Sidebar = () => {
 
   return (
     <>
-      <aside className="md:w-1/4 " aria-label="Sidebar ">
+      <aside className="w-full p-4 " aria-label="Sidebar ">
         <div className="px-3 py-4 overflow-y-auto rounded bg-gray-50 dark:bg-transparent-800">
           <ul className="space-y-2">
             <li>

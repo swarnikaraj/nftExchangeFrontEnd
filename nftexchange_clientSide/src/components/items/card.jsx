@@ -17,8 +17,8 @@ export const Cards = ({ rows }) => {
   const [arr, setArr] = useState([]);
   const [filters, setFilters] = useState([]);
   const { contractAddress } = useContext(contractContext);
-  
-  const { filterString, updateFilterString} = useContext(filterContext);
+
+  const { filterString, updateFilterString } = useContext(filterContext);
 
   useEffect(() => {
     fetchAndSetNft();
@@ -36,9 +36,9 @@ export const Cards = ({ rows }) => {
     console.log(urlFinal, "i am final");
     const data = await fetch(urlFinal);
     const parsedData = await data.json();
-   console.log(37,parsedData)
+    console.log(37, parsedData);
     setNfts(parsedData.nft);
-    console.log(nfts,"39")
+    console.log(nfts, "39");
     setTotalResult(parsedData.totalResults);
     setLoading(false);
   }
@@ -66,7 +66,7 @@ export const Cards = ({ rows }) => {
 
   return (
     <>
-      <div className="flex flex-col md:w-3/4">
+      <div className="w-full ">
         <div className="flex flex-wrap justify-center pl-4 pr-4 border-t ">
           <div className="w-1/2 m-1 mr-2">
             <Searchbox />
@@ -150,7 +150,6 @@ export const Cards = ({ rows }) => {
             </div>
           </div>
         </InfiniteScroll>
-
       </div>
     </>
   );
