@@ -43,7 +43,7 @@ export const Banner1 = (props) => {
           </div>
         </div>
 
-        <div className="sm:w-full md:w-2/5  ">
+        {/* <div className="sm:w-full md:w-2/5  ">
           <div className=" rounded-lg shadow-lg">
             <img
               src="https://images.unsplash.com/photo-1600054800747-be294a6a0d26?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80"
@@ -57,7 +57,9 @@ export const Banner1 = (props) => {
               <p className="text-purple-700 mb-2">by azuki</p>
             </div>
           </div>
-        </div>
+
+
+        </div> */}
       </div>
     </>
   );
