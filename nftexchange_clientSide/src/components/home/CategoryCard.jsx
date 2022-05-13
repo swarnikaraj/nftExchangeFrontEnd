@@ -1,4 +1,5 @@
 import "../../styles/common.css";
+import { v4 as uuidv4 } from "uuid";
 import React from "react";
 export const CatCard = () => {
   const cat = [
@@ -51,23 +52,26 @@ export const CatCard = () => {
           <div className="container mx-auto">
             <div className="lg:flex md:flex sm:flex items-center xl:justify-between flex-wrap md:justify-around sm:justify-around lg:justify-around">
               {cat.map((item) => (
-                <div className="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5">
+                <div
+                  className="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5"
+                  key={uuidv4()}
+                >
                   <div className="rounded overflow-hidden shadow-md bg-[#655D8A]">
                     <div className="absolute -mt-20 w-full flex justify-center">
                       <div className="h-32 w-25">
                         <img
                           src={item.img}
-                          alt
+                          alt="categories"
                           className="rounded-full object-cover h-full w-full shadow-md"
                         />
                       </div>
                     </div>
                     <div className="px-4 mt-16 py-4">
-                      <p className="text-gray-200 text-sm text-center">
-                        <a href="javascript:void(0)" className="">
-                          <div>{item.name}</div>
+                      <div className="text-gray-200 text-sm text-center">
+                        <a href="#" className="">
+                          <p>{item.name}</p>
                         </a>
-                      </p>
+                      </div>
                     </div>
                   </div>
                 </div>

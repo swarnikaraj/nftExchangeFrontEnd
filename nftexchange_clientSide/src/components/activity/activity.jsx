@@ -98,7 +98,7 @@ export const Activity = ({ rows, dataArr }) => {
       <div className="flex flex-col md:w-3/4">
         <div className="flex justify-center flex-wrap border-t border-b pl-4 pr-4 ">
           {filters.map((filter) => (
-            <span className="px-4 py-2 rounded-full text-gray-500 border border-gray-300 font-semibold text-sm flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease mt-3 mb-3 ml-2 mr-2">
+            <span className="px-4 py-2 rounded-full text-gray-500 border border-gray-300 font-semibold text-sm flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease mt-3 mb-3 ml-2 mr-2" key={uuidv4()}>
               {filter}
               <button className="bg-transparent hover focus:outline-none ">
                 <MdOutlineClose />

@@ -3,7 +3,7 @@ import "../../styles/common.css";
 export const InfoBanner = () => {
   return (
     <>
-      <div classname="overflow-y-hidden bg-gray-100">
+      <div className="overflow-y-hidden ">
         <div className="mx-auto container f-f-p px-4 xl:px-0 py-24">
           <h1 className="focus:outline-none text-center text-3xl lg:text-4xl font-extrabold lg:leading-9 tracking-wider text-gray-200">
             How it works?
@@ -33,14 +33,14 @@ export const InfoBanner = () => {
                   <img
                     className="focus:outline-none mt-24"
                     src="https://tuk-cdn.s3.amazonaws.com/can-uploader/3_step_center_aligned_how_it_worksSvg3.svg"
-                    alt
+                    alt="list nfts"
                   />
                 </div>
 
                 <img
                   className="hidden md:block absolute right-0 top-0 -mt-2 -mr-1"
                   src="https://cdn.tuk.dev/assets/components/111220/Fs7/line.png"
-                  alt
+                  alt="nft exchange"
                 />
               </div>
 
@@ -59,7 +59,7 @@ export const InfoBanner = () => {
                   <img
                     className="focus:outline-none mt-32"
                     src="https://tuk-cdn.s3.amazonaws.com/can-uploader/3_step_center_aligned_how_it_worksSvg5.svg"
-                    alt
+                    alt="wallet"
                   />
                 </div>
 

@@ -38,7 +38,7 @@ export const Banner1 = (props) => {
           <div className="bg-white rounded-lg shadow-lg">
             <img
               src="https://images.unsplash.com/photo-1600054800747-be294a6a0d26?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80"
-              alt=""
+              alt="kch v"
               className="rounded-t-lg"
             />
             <div className="p-6">
