@@ -67,7 +67,7 @@ export const CatCard = () => {
                       </div>
                     </div>
                     <div className="px-4 mt-16 py-4">
-                      <div className="text-gray-200 text-sm text-center">
+                      <div className="text-gray-200 text-sm text-center font-bold">
                         <a href="#" className="">
                           <p>{item.name}</p>
                         </a>
