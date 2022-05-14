@@ -9,6 +9,7 @@ import { singleNftContext } from "../../contexts/singleNft";
 import { filterContext } from "../../contexts/filterTrait";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 export const Cards = ({ rows }) => {
   const [clicked, setClicked] = useState(false);
@@ -20,7 +21,7 @@ export const Cards = ({ rows }) => {
   const [arr, setArr] = useState([]);
   const [filters, setFilters] = useState([]);
   const { contractAddress } = useContext(contractContext);
-  const {nft,addNft}=useContext(singleNftContext)
+  const { nft, addNft } = useContext(singleNftContext);
 
   const { filterString, updateFilterString } = useContext(filterContext);
 
@@ -42,10 +43,10 @@ export const Cards = ({ rows }) => {
     const data = await fetch(urlFinal);
     const parsedData = await data.json();
     console.log(37, parsedData);
-     setNfts(parsedData.nft);
-     console.log(nfts, "39");
-     setTotalResult(parsedData.totalResults);
-     setLoading(false);
+    setNfts(parsedData.nft);
+    console.log(nfts, "39");
+    setTotalResult(parsedData.totalResults);
+    setLoading(false);
   }
 
   async function fetchMoreData() {
@@ -104,26 +105,26 @@ export const Cards = ({ rows }) => {
               <div className="flex flex-wrap -mx-1 lg:-mx-4">
                 {nfts?.map((data) => (
                   <div
-                    className="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
+                    className="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4"
                     key={uuidv4()}
                   >
-                    <article className="overflow-hidden rounded-lg shadow-lg cursor-pointer" onClick={()=>{
-                      addNft(data)
-                      navigate("/single")
-                    }}>
-                      <a href="#">
+
+                    <Link to={`/nft/${data.address}/${data.index}`}>
+                    <article
+                      className="overflow-hidden rounded-lg shadow-lg cursor-pointer"
+                      
+                    >
+                      
                         <img
                           alt="Placeholder"
                           className="block w-full h-auto"
                           src={data.imageURI}
                         />
-                      </a>
+                     
 
                       <div className="flex items-center justify-between px-4 pt-2 leading-tight">
                         <h1 className="text-lg text-gray-200 no-underline hover:underline">
-                         
-                            {data.name}
-                         
+                          {data.name}
                         </h1>
 
                         <div className="flex items-center text-sm text-grey-darker">
@@ -132,16 +133,14 @@ export const Cards = ({ rows }) => {
                         </div>
                       </div>
                       <div className="flex items-center justify-between px-4 py-1 leading-none">
-                       
-                          <p className="text-sm ">
-                            {JSON.parse(data.tokenURI).name}
-                          </p>
-                      
-                       
-                          <span className="text-sm">45</span>
-                         
+                        <p className="text-sm ">
+                          {JSON.parse(data.tokenURI).name}
+                        </p>
+
+                        <span className="text-sm">45</span>
                       </div>
                     </article>
+                    </Link>
                   </div>
                 ))}
               </div>

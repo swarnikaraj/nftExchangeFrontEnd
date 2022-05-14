@@ -1,23 +1,16 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { singleNftContext } from "../../contexts/singleNft";
 import React, { useState } from "react";
 import { profileContext } from "../../contexts/profileContext";
+import { useParams } from "react-router";
 export const SingleNft = () => {
   const { nft, addNft } = useContext(singleNftContext);
 
-  const [rotate, setRotate] = useState(false);
-  const [count, setCount] = useState(0);
+  const { address, index } = useParams();
 
-  const addCount = () => {
-    setCount((prev) => prev + 1);
-  };
-
-  const minusCount = () => {
-    if (count > 0) {
-      setCount((prev) => prev - 1);
-    }
-  };
-
+  useEffect(() => {
+    console.log(address, index, "Mil gya mai");
+  }, [address, index]);
   return (
     <>
       <div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4 ">
@@ -35,23 +28,20 @@ export const SingleNft = () => {
               </p>
             </div>
 
-           
             <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
               $ 790.89
             </p>
 
             <div className="lg:mt-11 mt-10">
-              
               <hr className=" bg-gray-200 w-full my-2" />
-              
             </div>
 
             <button className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6">
-             Buy Now
+              Buy Now
             </button>
 
             <button className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6">
-             Bid 
+              Bid
             </button>
           </div>
 
@@ -59,19 +49,12 @@ export const SingleNft = () => {
 
           <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-6 gap-4">
             <div className=" w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
-              <img
-                src={nft.imageURI}
-                alt="Wooden Chair Previw"
-              />
+              <img src={nft.imageURI} alt="Wooden Chair Previw" />
             </div>
-            
           </div>
-          
         </div>
         <div className="flex  justify-center items-center w-full">
-          <div className="w-full sm:w-96 md:w-8/12 lg:w-full grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 lg:gap-28 sm:gap-x-6 sm:gap-y-12 gap-y-12 sm:mt-14 mt-10">
-            
-          </div>
+          <div className="w-full sm:w-96 md:w-8/12 lg:w-full grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 lg:gap-28 sm:gap-x-6 sm:gap-y-12 gap-y-12 sm:mt-14 mt-10"></div>
         </div>
       </div>
     </>

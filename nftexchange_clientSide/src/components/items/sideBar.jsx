@@ -26,7 +26,7 @@ export const Sidebar = () => {
   function getfilters() {}
   useEffect(() => {
     fetch(
-      `http://localhost:1234/contract/byAddress/0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB`
+      `http://localhost:1234/contract/byAddress/${contractAddress}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -34,7 +34,8 @@ export const Sidebar = () => {
 
         setArr(data);
       });
-  }, []);
+  }, [contractAddress]);
+  
 //address dependent
   useEffect(() => {
     makestring(filters);
