@@ -1,49 +1,70 @@
 import "../../styles/common.css";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import { v4 as uuidv4 } from "uuid";
+import { contractContext } from "../../contexts/contractsContext";
 import React from "react";
+import { profileContext } from "../../contexts/profileContext";
+import { MdFaceRetouchingOff } from "react-icons/md";
 export const CatCard = () => {
-  const cat = [
-    { name: "Art", img: "https://opensea.io/static/images/categories/art.png" },
-    {
-      name: "Collectibles",
-      img: "https://opensea.io/static/images/categories/collectibles.png",
-    },
-    {
-      name: "Domain Name",
-      img: "https://opensea.io/static/images/categories/domain-names.png",
-    },
-    {
-      name: "Music",
-      img: "https://opensea.io/static/images/categories/music.png",
-    },
-    {
-      name: "Photography",
-      img: "https://opensea.io/static/images/categories/photography-category.png",
-    },
-    {
-      name: "Sports",
-      img: "https://opensea.io/static/images/categories/sports.png",
-    },
-    {
-      name: "Trading Cards",
-      img: "https://opensea.io/static/images/categories/trading-cards.png",
-    },
-    {
-      name: "Utility",
-      img: "https://opensea.io/static/images/categories/utility.png",
-    },
-    {
-      name: "Virtual Cards",
-      img: "https://opensea.io/static/images/categories/virtual-worlds.png",
-    },
-  ];
+  const { contractAddress, addContractAddress } = useContext(contractContext);
+  const { profile, addProfile } = useContext(profileContext);
+  const [contracts, setContracts] = useState([]);
+  const navigate = useNavigate();
+  async function addimg(obj, address) {
+    const res = await fetch(
+      `https://api.opensea.io/api/v1/asset_contract/${address}`
+    );
+    const data = await res.json();
+    obj.img = data.image_url;
+
+    setContracts([...contracts, obj]);
+    console.log(obj, "mjhe image url add ho gya");
+  }
+
+  useEffect(() => {
+    fetch("http://localhost:1234/contract")
+      .then((res) => res.json())
+      .then((res) => {
+        const arr = res.contract;
+
+        console.log(arr, " ia m arr");
+
+        for (let i = 0; i < arr.length; i++) {
+          let add = arr[i].address;
+          fetch(`https://api.opensea.io/api/v1/asset_contract/${add}`)
+            .then((res) => res.json())
+            .then((res) => {
+              arr[i].img = res.image_url;
+              console.log(arr[i], "edit ho rha hu mai to");
+              setContracts(arr);
+            });
+        }
+
+        console.log(arr, "i am edited arr");
+        console.log(contracts, "edited contracts");
+      });
+  }, []);
+
+  async function getprofile(address) {
+    const res = await fetch(
+      `https://api.opensea.io/api/v1/asset_contract/${address}`
+    );
+    const data = await res.json();
+
+    console.log(data);
+    // addContractAddress(data.address);
+    addProfile(data);
+    // navigate("/profile");
+  }
+
   return (
     <>
       <div>
         <div className="container flex justify-center mx-auto pt-16">
           <div>
             <p className="text-gray-200 font-extrabold text-3xl text-center  pb-3">
-              Browse By Category
+              Browse By Contracts
             </p>
           </div>
         </div>
@@ -51,10 +72,15 @@ export const CatCard = () => {
         <div className="w-full  px-10 pt-10">
           <div className="container mx-auto">
             <div className="lg:flex md:flex sm:flex items-center xl:justify-between flex-wrap md:justify-around sm:justify-around lg:justify-around">
-              {cat.map((item) => (
+              {contracts?.map((item) => (
                 <div
-                  className="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5"
+                  className="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5 cursor-pointer"
                   key={uuidv4()}
+                  onClick={() => {
+                    getprofile(item.address);
+                    addContractAddress(item.address);
+                    navigate("/profile");
+                  }}
                 >
                   <div className="rounded overflow-hidden shadow-md bg-[#655D8A]">
                     <div className="absolute -mt-20 w-full flex justify-center">
@@ -68,9 +94,7 @@ export const CatCard = () => {
                     </div>
                     <div className="px-4 mt-16 py-4">
                       <div className="text-gray-200 text-sm text-center font-bold">
-                        <a href="#" className="">
-                          <p>{item.name}</p>
-                        </a>
+                        <p>{item.name}</p>
                       </div>
                     </div>
                   </div>

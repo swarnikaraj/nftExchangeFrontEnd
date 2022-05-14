@@ -2,14 +2,17 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { useState, useContext, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Dropdown } from "../profile/dropdown";
-import { Searchbox } from "../profile/searchbox";
+import { Searchbox } from "../searchBar/search";
 import { FaEthereum } from "react-icons/fa";
 import { contractContext } from "../../contexts/contractsContext";
+import { singleNftContext } from "../../contexts/singleNft";
 import { filterContext } from "../../contexts/filterTrait";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useNavigate } from "react-router";
 
 export const Cards = ({ rows }) => {
   const [clicked, setClicked] = useState(false);
+  const navigate = useNavigate();
   const [nfts, setNfts] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -17,11 +20,13 @@ export const Cards = ({ rows }) => {
   const [arr, setArr] = useState([]);
   const [filters, setFilters] = useState([]);
   const { contractAddress } = useContext(contractContext);
+  const {nft,addNft}=useContext(singleNftContext)
 
   const { filterString, updateFilterString } = useContext(filterContext);
 
   useEffect(() => {
     fetchAndSetNft();
+    console.log("i am running on chngind address");
   }, [contractAddress, filterString, page]);
 
   async function fetchAndSetNft() {
@@ -37,10 +42,10 @@ export const Cards = ({ rows }) => {
     const data = await fetch(urlFinal);
     const parsedData = await data.json();
     console.log(37, parsedData);
-    setNfts(parsedData.nft);
-    console.log(nfts, "39");
-    setTotalResult(parsedData.totalResults);
-    setLoading(false);
+     setNfts(parsedData.nft);
+     console.log(nfts, "39");
+     setTotalResult(parsedData.totalResults);
+     setLoading(false);
   }
 
   async function fetchMoreData() {
@@ -80,7 +85,7 @@ export const Cards = ({ rows }) => {
           <div className="w-1/4 m-1 mr-2">
             <Dropdown
               optionName={"Price: Low to High"}
-              dataArr={["Recently created", "Recently Sold", "Recently open"]}
+              dataArr={["Hight to Low", "Low to High"]}
               width={"w-full"}
             />
           </div>
@@ -102,7 +107,10 @@ export const Cards = ({ rows }) => {
                     className="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
                     key={uuidv4()}
                   >
-                    <article className="overflow-hidden rounded-lg shadow-lg">
+                    <article className="overflow-hidden rounded-lg shadow-lg cursor-pointer" onClick={()=>{
+                      addNft(data)
+                      navigate("/single")
+                    }}>
                       <a href="#">
                         <img
                           alt="Placeholder"
@@ -112,13 +120,10 @@ export const Cards = ({ rows }) => {
                       </a>
 
                       <div className="flex items-center justify-between px-4 pt-2 leading-tight">
-                        <h1 className="text-lg">
-                          <a
-                            className="text-gray-200 no-underline hover:underline"
-                            href="#"
-                          >
+                        <h1 className="text-lg text-gray-200 no-underline hover:underline">
+                         
                             {data.name}
-                          </a>
+                         
                         </h1>
 
                         <div className="flex items-center text-sm text-grey-darker">
@@ -127,21 +132,14 @@ export const Cards = ({ rows }) => {
                         </div>
                       </div>
                       <div className="flex items-center justify-between px-4 py-1 leading-none">
-                        <a
-                          className="flex items-center text-black no-underline hover:underline"
-                          href="#"
-                        >
+                       
                           <p className="text-sm ">
                             {JSON.parse(data.tokenURI).name}
                           </p>
-                        </a>
-                        <a
-                          className="no-underline text-grey-darker hover:text-red-dark"
-                          href="#"
-                        >
+                      
+                       
                           <span className="text-sm">45</span>
-                          {/* <MdFavoriteBorder /> */}
-                        </a>
+                         
                       </div>
                     </article>
                   </div>

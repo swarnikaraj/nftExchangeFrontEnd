@@ -22,3 +22,4 @@ export const ContractContextProvider = ({ children }) => {
     </contractContext.Provider>
   );
 };
+

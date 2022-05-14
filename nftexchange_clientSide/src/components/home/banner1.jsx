@@ -6,21 +6,13 @@ import { BackgroundAnimation } from "./Animation";
 import { Btn1 } from "./btn1";
 import { Btn2 } from "./btn2";
 export const Banner1 = (props) => {
-  useEffect(() => {
-    fetch(
-      "https://api.opensea.io/api/v1/asset_contract/0x06012c8cf97bead5deae237070f9587f8e7a266d"
-    )
-      .then((res) => res.json())
-      .then((res) => console.log(res, "I am opensea api data"));
-  }, []);
+ 
 
   const commonStyles =
     "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] font-semibold flex justify-center items-center border-[8px] text-gradient2 border-900 text-sm white-glassmorphism ";
   return (
     <>
-      <div className="w-full flex md:justify-center sm:justify-center justify-between items-center p-2">
-        <Searchbox />
-      </div>
+     
       <div className="h-40 -mt-20">
         <BackgroundAnimation />
       </div>

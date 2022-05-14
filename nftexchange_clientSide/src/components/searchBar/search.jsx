@@ -50,16 +50,17 @@ export const Searchbox = () => {
           type="text"
           value={text}
           onChange={handleChange}
-          className="w-full pt-2 pb-2 pl-4 pr-4 bg-gray-100 border border-gray-600"
+          className="w-full pt-2 pb-2 pl-4 pr-4 text-gray-100 border border-gray-600 bg-transparent"
         />
 
         {isOpen && (
-          <div className=" shadow-zinc-700 sticky max-h-40 h-20">
+          <div className=" text-gray-200 sticky max-h-40 h-20">
             {result?.map(({ _id, address, totalSupply, name }) => (
               <div
                 className="flex border px-4 py-2 mt-2"
                 onClick={() => {
                   addContractAddress(address);
+                  setIsOpen(false);
                 }}
                 key={_id}
               >

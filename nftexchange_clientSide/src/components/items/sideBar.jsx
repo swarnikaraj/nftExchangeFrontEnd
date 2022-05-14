@@ -34,8 +34,8 @@ export const Sidebar = () => {
 
         setArr(data);
       });
-  }, [contractAddress]);
-
+  }, []);
+//address dependent
   useEffect(() => {
     makestring(filters);
     console.log("filters applied", filters);

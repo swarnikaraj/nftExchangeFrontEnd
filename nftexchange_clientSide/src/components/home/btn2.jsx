@@ -8,7 +8,7 @@ export const Btn2 = () => {
         to="/"
         className="bg-[rgb(101,92,138)] hover:bg-[rgb(145,118,255)] text-white py-2 px-4 rounded inline-flex items-center"
       >
-        Button
+        Explore
       </Link>
     </>
   );
