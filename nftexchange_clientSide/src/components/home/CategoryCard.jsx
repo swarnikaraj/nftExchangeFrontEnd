@@ -9,7 +9,7 @@ import { MdFaceRetouchingOff } from "react-icons/md";
 import { Link } from "react-router-dom";
 export const CatCard = () => {
   const { contractAddress, addContractAddress } = useContext(contractContext);
-  
+
   const { profile, addProfile } = useContext(profileContext);
   const [contracts, setContracts] = useState([]);
   const navigate = useNavigate();
@@ -48,8 +48,6 @@ export const CatCard = () => {
       });
   }, []);
 
- 
-
   return (
     <>
       <div>
@@ -68,31 +66,23 @@ export const CatCard = () => {
                 <div
                   className="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5 cursor-pointer"
                   key={uuidv4()}
-                  
                 >
                   <div className="rounded overflow-hidden shadow-md bg-[#655D8A]">
-                  <Link to={`/profile/${item.address}`}>
-                    <div className="absolute -mt-20 w-full flex justify-center">
-                  
-                      <div className="h-32 w-25">
-                       
-                        <img
-                          src={item.img}
-                          alt="categories"
-                          className="rounded-full object-cover h-full w-full shadow-md"
-                        />
-                       
+                    <Link to={`/collection/${item.address}`}>
+                      <div className="absolute -mt-20 w-full flex justify-center">
+                        <div className="h-32 w-25">
+                          <img
+                            src={item.img}
+                            alt="categories"
+                            className="rounded-full object-cover h-full w-full shadow-md"
+                          />
+                        </div>
                       </div>
-                      
-                    </div>
-                    <div className="px-4 mt-16 py-4">
-                      <div className="text-gray-200 text-sm text-center font-bold">
-                       
-                        <p>{item.name}</p>
-                        
+                      <div className="px-4 mt-16 py-4">
+                        <div className="text-gray-200 text-sm text-center font-bold">
+                          <p>{item.name}</p>
+                        </div>
                       </div>
-                     
-                    </div>
                     </Link>
                   </div>
                 </div>

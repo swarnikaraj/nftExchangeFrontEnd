@@ -45,6 +45,7 @@ export const Cards = ({ rows }) => {
     console.log(37, parsedData);
     setNfts(parsedData.nft);
     console.log(nfts, "39");
+
     setTotalResult(parsedData.totalResults);
     setLoading(false);
   }
@@ -74,22 +75,10 @@ export const Cards = ({ rows }) => {
     <>
       <div className="w-full ">
         <div className="flex flex-wrap justify-center pl-4 pr-4 border-t ">
-          <div className="w-1/2 m-1 mr-2">
+          <div className="w-full m-1 mt-3">
             <Searchbox />
           </div>
-          <div className="w-1/4 m-1 mr-2">
-            <Dropdown
-              optionName={"Single item"}
-              dataArr={["All items", "bundles"]}
-            />
-          </div>
-          <div className="w-1/4 m-1 mr-2">
-            <Dropdown
-              optionName={"Price: Low to High"}
-              dataArr={["Hight to Low", "Low to High"]}
-              width={"w-full"}
-            />
-          </div>
+
           <div></div>
         </div>
 
@@ -108,38 +97,33 @@ export const Cards = ({ rows }) => {
                     className="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4"
                     key={uuidv4()}
                   >
-
-                    <Link to={`/nft/${data.address}/${data.index}`}>
-                    <article
-                      className="overflow-hidden rounded-lg shadow-lg cursor-pointer"
-                      
-                    >
-                      
+                    <Link to={`/collection/${data.address}/${data.index}`}>
+                      <article className="overflow-hidden rounded-lg shadow-lg cursor-pointer">
                         <img
                           alt="Placeholder"
                           className="block w-full h-auto"
                           src={data.imageURI}
                         />
-                     
 
-                      <div className="flex items-center justify-between px-4 pt-2 leading-tight">
-                        <h1 className="text-lg text-gray-200 no-underline hover:underline">
-                          {data.name}
-                        </h1>
+                        <div className="flex items-center justify-between px-4 pt-2 leading-tight">
+                          <h1 className="text-lg text-gray-200 no-underline hover:underline">
+                            {data.name}
+                          </h1>
 
-                        <div className="flex items-center text-sm text-grey-darker">
-                          <FaEthereum />
-                          <span className="ml-1">0.933</span>
+                          <div className="flex items-center text-sm text-grey-darker">
+                            <FaEthereum />
+                            <span className="ml-1">0.933</span>
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex items-center justify-between px-4 py-1 leading-none">
-                        <p className="text-sm ">
-                          {JSON.parse(data.tokenURI).name}
-                        </p>
+                        <div className="flex items-center justify-between px-4 py-1 leading-none">
+                          <p className="text-sm ">
+                            {data.index}
+                            {/* {JSON.parse(data.tokenURI).name} */}
+                          </p>
 
-                        <span className="text-sm">45</span>
-                      </div>
-                    </article>
+                          <span className="text-sm">45</span>
+                        </div>
+                      </article>
                     </Link>
                   </div>
                 ))}

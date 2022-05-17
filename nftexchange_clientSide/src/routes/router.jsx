@@ -11,8 +11,8 @@ export const Router = () => {
   return (
     <>
       <Routes>
-        <Route path="/profile/:address" element={<Profile />} />
-        <Route path="/nft/:address/:index" element={<SingleNft />} />
+        <Route path="/collection/:address" element={<Profile />} />
+        <Route path="/collection/:address/:index" element={<SingleNft />} />
         <Route path="/" element={<HomePage />} />
 
         <Route path="*" element={<h1>Page not found</h1>} />
