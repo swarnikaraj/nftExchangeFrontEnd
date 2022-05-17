@@ -78,9 +78,11 @@ export const Nav = () => {
     return (
       <nav className="w-full flex md:justify-center justify-between items-center py-10">
         <div className="md:flex-[0.5] flex-initial justify-center items-center">
+          <Link to={"/"}>
           <span className="w-30 cursor-pointer text-xl sm:text-4xl bold text-white">
             Nft-Exchange
           </span>
+          </Link>
         </div>
 
         <ul className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">

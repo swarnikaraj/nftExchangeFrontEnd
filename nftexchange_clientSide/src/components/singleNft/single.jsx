@@ -34,9 +34,7 @@ export const SingleNft = () => {
         setNftname(t.name);
       });
 
-    fetch(
-      `http://127.0.0.1:1234/nft/history/0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB/1799`
-    )
+    fetch(`http://127.0.0.1:1234/nft/history/${address}/${index}`)
       .then((res) => res.json())
       .then((res) => {
         console.log(res, "i am histroy");
@@ -45,85 +43,86 @@ export const SingleNft = () => {
   }, [address, index]);
 
   useEffect(() => {
-    fetch(
-      `http://127.0.0.1:1234/nft/history/0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB/1799`
-    )
+    fetch(`http://127.0.0.1:1234/nft/history/${address}/${index}`)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res, "i am histroy");
+        setHis(res.nft.result);
+        console.log(res.nft.result, "i am histroy");
         setLoadingHistory(false);
       });
   }, []);
 
   return (
     <>
-      <div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4 ">
-        <div className="flex justify-center items-center lg:flex-row flex-col gap-8">
-          {/* <!-- Description Div --> */}
+      < div className=" w-full border-2 sm:overflow-x-hidden md:overflow-x-hidden container flex flex-wrap justify-between items-center mx-auto">
+        <div div className="w-full items-center lg:w-full  ">
+          <div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 mx-auto border-5 ">
+            <div className="flex justify-center items-center lg:flex-row flex-col gap-8">
+              <div className="  w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center">
+                <h2 className="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-200 mt-4">
+                  {nftname}
+                </h2>
 
-          <div className="  w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center">
-            <h2 className="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-200 mt-4">
-              {nftname}
-            </h2>
-
-            <div className=" flex flex-row justify-between  mt-5">
-              <a href={extLink} className="hover:text-black ">
-                <p className="focus:outline-none   font-normal text-base leading-4 text-gray-200 hover:underline hover:text-gray-800 duration-100 cursor-pointer underline">
-                  {mynft.name}
-                </p>
-              </a>
-            </div>
-
-            <div className="  lg:leading-6 leading-5 mt-6 grid grid-cols-4 gap-4 sm:grid-cols-2 md:grid-cols-3 ">
-              {attributes?.map(({ trait_type, value }) => (
-                <div className="border p-2" key={uuidv4()}>
-                  <p className="font-semibold lg:text-xl text-xl text-gray-200 ">
-                    {trait_type}
-                  </p>
-                  <p className="font-sm lg:text-sm text-gray-200 ">{value}</p>
+                <div className=" flex flex-row justify-between  mt-5">
+                  <a href={extLink} className="hover:text-black ">
+                    <p className="focus:outline-none   font-normal text-base leading-4 text-gray-200 hover:underline hover:text-gray-800 duration-100 cursor-pointer underline">
+                      {mynft.name}
+                    </p>
+                  </a>
                 </div>
-              ))}
-            </div>
 
-            <div className="lg:mt-11 mt-10">
-              <hr className=" bg-gray-200 w-full my-2" />
-            </div>
+                <div className="  lg:leading-6 leading-5 mt-6 grid grid-cols-4 gap-4 sm:grid-cols-2 md:grid-cols-3 ">
+                  {attributes?.map(({ trait_type, value }) => (
+                    <div className="border p-2" key={uuidv4()}>
+                      <p className="font-semibold lg:text-xl text-xl text-gray-200 ">
+                        {trait_type}
+                      </p>
+                      <p className="font-sm lg:text-sm text-gray-200 ">
+                        {value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
 
-            <p>{des}</p>
+                <div className="lg:mt-11 mt-10">
+                  <hr className=" bg-gray-200 w-full my-2" />
+                </div>
 
-            <button
-              onClick={() => {
-                setBuyPopUp(true);
-              }}
-              className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6"
-            >
-              Buy Now
-            </button>
+                <p>{des}</p>
 
-            <button
-              onClick={() => {
-                setBidPopUp(true);
-              }}
-              className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6"
-            >
-              Bid
-            </button>
-          </div>
+                <button
+                  onClick={() => {
+                    setBuyPopUp(true);
+                  }}
+                  className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-10 mt-6"
+                >
+                  Buy Now
+                </button>
 
-          {/* <!-- Preview Images Div For larger Screen--> */}
+                <button
+                  onClick={() => {
+                    setBidPopUp(true);
+                  }}
+                  className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-2 mt-2"
+                >
+                  Bid
+                </button>
+              </div>
 
-          <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-6 gap-4">
-            <div className=" w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
-              <img src={mynft.imageURI} alt="Nft image" />
+              <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-6 gap-4 ">
+                <div className=" w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
+                  <img src={mynft.imageURI} alt="Nft image" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="flex  justify-center items-center w-full">
-          <div className="w-full items-center lg:w-full ">
+
+        <div className="flex  justify-center items-center w-full m-8">
+          <div className="w-full items-center lg:w-full  ">
             {loadingHistory && <Loader />}
 
-            {loadingHistory && (
-              <div className="xl:w-3/4 2xl:w-4/5 w-full">
+            {!loadingHistory && (<div className=" w-full border-1 ">
                 <div className="px-4 md:px-10 py-4 md:py-7">
                   <div className="sm:flex items-center justify-between">
                     <div className="mt-4 sm:mt-0">
@@ -135,8 +134,9 @@ export const SingleNft = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white px-4 md:px-10 pb-5">
-                  <div className="overflow-x-auto">
+
+                <div className="bg-white px-4 md:px-10 pb-5 ">
+                  <div className="overflow-x-auto  overflow-y-scroll max-h-60">
                     <table className="w-full whitespace-nowrap">
                       <thead className="text-semibold">
                         <tr
@@ -151,31 +151,29 @@ export const SingleNft = () => {
                                 </p>
                               </div>
                               <div className="pl-2">
-                                <p className="text-sm font-medium leading-none text-gray-800">
+                                <p className="text-sm leading-none text-gray-800 font-bold">
                                   Event
-                                </p>
-                                <p className="text-xs leading-3 text-gray-600 mt-2">
-                                  smthing
                                 </p>
                               </div>
                             </div>
                           </td>
-                          <td className="pl-16">
+                          <td className="pl-16 font-bold">
                             <p>Price</p>
                           </td>
                           <td>
-                            <p className="pl-16">to_address</p>
+                            <p className="pl-16 font-bold">to_address</p>
                           </td>
                           <td>
-                            <p className="pl-16">from_address</p>
+                            <p className="pl-16 font-bold">from_address</p>
                           </td>
                           <td>
-                            <p className="pl-16">time</p>
+                            <p className="pl-16 font-bold">time</p>
                           </td>
                         </tr>
                       </thead>
+
                       <tbody>
-                        {[1, 2, 3, 4].map((item) => (
+                        {his?.map((item) => (
                           <tr
                             className="text-sm leading-none text-gray-600 h-16"
                             key={uuidv4()}
@@ -187,24 +185,25 @@ export const SingleNft = () => {
                                     E
                                   </p>
                                 </div>
-                                <div className="pl-2">
+                                <div className="pl-2 ">
                                   <p className="text-sm font-medium leading-none text-gray-800">
                                     Event
-                                  </p>
-                                  <p className="text-xs leading-3 text-gray-600 mt-2">
-                                    Price
                                   </p>
                                 </div>
                               </div>
                             </td>
                             <td className="pl-16">
-                              <p>type</p>
+                              <p>{item.amount}</p>
                             </td>
                             <td>
-                              <p className="pl-16">to_address</p>
+                              <p className="pl-16">
+                                {item.to_address.slice(0, 6)}
+                              </p>
                             </td>
                             <td>
-                              <p className="pl-16">from_address</p>
+                              <p className="pl-16">
+                                {item.from_address.slice(0, 6)}
+                              </p>
                             </td>
                             <td>
                               <p className="pl-16">time</p>
@@ -217,25 +216,12 @@ export const SingleNft = () => {
                 </div>
               </div>
             )}
-          </div>
-        </div>
-      </div>
+          
+</div>
+</div>
+        {/* my pop ups */}
 
-      {/* <div className="overflow-y-auto overflow-x-hidden fixed  z-50 border justify-center items-center left-1/4 top-1/3 w-1/2 h-1/2 margin-auto bg-[#655D8A]  ">
-        hello
-      </div> */}
-
-      {/* 
-      
-      
-       my pop ups
-      
-      
-      
-      
-      */}
-
-      {!buyPopUp && bidPopUp && (
+        {!buyPopUp && bidPopUp && (
         <div
           id="bidpopup"
           className=" fixed top-1/2 left-1/4 transition duration-150 ease-in-out  ml-20 w-full sm:w-1/2"
@@ -270,7 +256,7 @@ export const SingleNft = () => {
         </div>
       )}
 
-      {buyPopUp && !bidPopUp && (
+        {buyPopUp && !bidPopUp && (
         <div
           id="bidpopup"
           className=" fixed top-1/2 left-1/4 transition duration-150 ease-in-out  ml-20 w-full sm:w-1/2"
@@ -304,6 +290,7 @@ export const SingleNft = () => {
           </div>
         </div>
       )}
+      </div>
     </>
   );
 };
