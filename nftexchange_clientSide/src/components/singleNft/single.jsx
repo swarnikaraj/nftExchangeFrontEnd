@@ -38,23 +38,24 @@ export const SingleNft = () => {
       .then((res) => res.json())
       .then((res) => {
         console.log(res, "i am histroy");
+        setHis(res.nft.result);
         setLoadingHistory(false);
       });
   }, [address, index]);
 
-  useEffect(() => {
-    fetch(`http://127.0.0.1:1234/nft/history/${address}/${index}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setHis(res.nft.result);
-        console.log(res.nft.result, "i am histroy");
-        setLoadingHistory(false);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(`http://127.0.0.1:1234/nft/history/${address}/${index}`)
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       setHis(res.nft.result);
+  //       console.log(res.nft.result, "i am histroy");
+  //       setLoadingHistory(false);
+  //     });
+  // }, []);
 
   return (
     <>
-      < div className=" w-full border-2 sm:overflow-x-hidden md:overflow-x-hidden container flex flex-wrap justify-between items-center mx-auto">
+      <div className=" w-full border-2 sm:overflow-x-hidden md:overflow-x-hidden container flex flex-wrap justify-between items-center mx-auto">
         <div div className="w-full items-center lg:w-full  ">
           <div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 mx-auto border-5 ">
             <div className="flex justify-center items-center lg:flex-row flex-col gap-8">
@@ -122,7 +123,8 @@ export const SingleNft = () => {
           <div className="w-full items-center lg:w-full  ">
             {loadingHistory && <Loader />}
 
-            {!loadingHistory && (<div className=" w-full border-1 ">
+            {!loadingHistory && (
+              <div className=" w-full border-1 ">
                 <div className="px-4 md:px-10 py-4 md:py-7">
                   <div className="sm:flex items-center justify-between">
                     <div className="mt-4 sm:mt-0">
@@ -216,80 +218,79 @@ export const SingleNft = () => {
                 </div>
               </div>
             )}
-          
-</div>
-</div>
+          </div>
+        </div>
         {/* my pop ups */}
 
         {!buyPopUp && bidPopUp && (
-        <div
-          id="bidpopup"
-          className=" fixed top-1/2 left-1/4 transition duration-150 ease-in-out  ml-20 w-full sm:w-1/2"
-        >
-          <div className="w-full bg-white rounded shadow-2xl">
-            <div className="relative bg-[#655D8A] rounded-t py-4 px-4 xl:px-8"></div>
-            <div className="w-full h-full px-4 xl:px-8 py-5">
-              <div className="flex items-center justify-between">
-                <div
-                  className="p-2 rounded-full shadow text-black"
-                  onClick={() => {
-                    setBidPopUp(false);
-                  }}
-                >
-                  cancel
+          <div
+            id="bidpopup"
+            className=" fixed top-1/2 left-1/4 transition duration-150 ease-in-out  ml-20 w-full sm:w-1/2"
+          >
+            <div className="w-full bg-white rounded shadow-2xl">
+              <div className="relative bg-[#655D8A] rounded-t py-4 px-4 xl:px-8"></div>
+              <div className="w-full h-full px-4 xl:px-8 py-5">
+                <div className="flex items-center justify-between">
+                  <div
+                    className="p-2 rounded-full shadow text-black"
+                    onClick={() => {
+                      setBidPopUp(false);
+                    }}
+                  >
+                    cancel
+                  </div>
                 </div>
-              </div>
-              <hr className="my-5 border border-gray-200" />
-              <div className="w-full h-full pb-5 lg:pb-10">
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center"></div>
-                </div>
-                <div className="py-6 flex justify-between items-center">
-                  <div className="flex items-center"></div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center"></div>
+                <hr className="my-5 border border-gray-200" />
+                <div className="w-full h-full pb-5 lg:pb-10">
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center"></div>
+                  </div>
+                  <div className="py-6 flex justify-between items-center">
+                    <div className="flex items-center"></div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
         {buyPopUp && !bidPopUp && (
-        <div
-          id="bidpopup"
-          className=" fixed top-1/2 left-1/4 transition duration-150 ease-in-out  ml-20 w-full sm:w-1/2"
-        >
-          <div className="w-full bg-white rounded shadow-2xl">
-            <div className="relative bg-[#655D8A] rounded-t py-4 px-4 xl:px-8"></div>
-            <div className="w-full h-full px-4 xl:px-8 py-5">
-              <div className="flex items-center justify-between">
-                <div
-                  className="p-2 rounded-full shadow text-black"
-                  onClick={() => {
-                    setBuyPopUp(false);
-                  }}
-                >
-                  cancel
+          <div
+            id="bidpopup"
+            className=" fixed top-1/2 left-1/4 transition duration-150 ease-in-out  ml-20 w-full sm:w-1/2"
+          >
+            <div className="w-full bg-white rounded shadow-2xl">
+              <div className="relative bg-[#655D8A] rounded-t py-4 px-4 xl:px-8"></div>
+              <div className="w-full h-full px-4 xl:px-8 py-5">
+                <div className="flex items-center justify-between">
+                  <div
+                    className="p-2 rounded-full shadow text-black"
+                    onClick={() => {
+                      setBuyPopUp(false);
+                    }}
+                  >
+                    cancel
+                  </div>
                 </div>
-              </div>
-              <hr className="my-5 border border-gray-200" />
-              <div className="w-full h-full pb-5 lg:pb-10">
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center"></div>
-                </div>
-                <div className="py-6 flex justify-between items-center">
-                  <div className="flex items-center"></div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center"></div>
+                <hr className="my-5 border border-gray-200" />
+                <div className="w-full h-full pb-5 lg:pb-10">
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center"></div>
+                  </div>
+                  <div className="py-6 flex justify-between items-center">
+                    <div className="flex items-center"></div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
       </div>
     </>
   );
