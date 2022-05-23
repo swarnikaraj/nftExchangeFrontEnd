@@ -5,9 +5,10 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ContractContextProvider } from "./contexts/contractsContext";
 import { FilterContextProvider } from "./contexts/filterTrait";
-import {NftContextProvider} from './contexts/nftContext';
+import { NftContextProvider } from "./contexts/nftContext";
 import { SingleNftContextProvider } from "./contexts/singleNft";
 import { ProfileContextProvider } from "./contexts/profileContext";
+import { MetaAccountContextProvider } from "./contexts/metaAccountcontext";
 import { BrowserRouter } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,14 +16,16 @@ root.render(
     <ContractContextProvider>
       <NftContextProvider>
         <FilterContextProvider>
-        <BrowserRouter>
-        <ProfileContextProvider>
-          <SingleNftContextProvider>
-         <App />
-         </SingleNftContextProvider>
-         </ProfileContextProvider>
-      </BrowserRouter>
-      </FilterContextProvider>
+          <BrowserRouter>
+            <ProfileContextProvider>
+              <SingleNftContextProvider>
+                <MetaAccountContextProvider>
+                  <App />
+                </MetaAccountContextProvider>
+              </SingleNftContextProvider>
+            </ProfileContextProvider>
+          </BrowserRouter>
+        </FilterContextProvider>
       </NftContextProvider>
     </ContractContextProvider>
   </React.StrictMode>

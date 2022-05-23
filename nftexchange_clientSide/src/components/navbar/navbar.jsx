@@ -7,6 +7,8 @@ import { FaAngleUp } from "react-icons/fa";
 import { useState } from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 
+import { OnboardingButton } from "./web3connect";
+
 import { AiOutlineClose } from "react-icons/ai";
 
 const NavbarItem = ({ title, classProps }) => {
@@ -64,10 +66,6 @@ export const Nav2 = () => {
           )}
         </div>
       </nav>
-
-      
-
-
     </>
   );
 };
@@ -79,10 +77,14 @@ export const Nav = () => {
       <nav className="w-full flex md:justify-center justify-between items-center py-10">
         <div className="md:flex-[0.5] flex-initial justify-center items-center">
           <Link to={"/"}>
-          <span className="w-30 cursor-pointer text-xl sm:text-4xl bold text-white">
-            Nft-Exchange
-          </span>
+            <span className="w-30 cursor-pointer text-xl sm:text-4xl bold text-white">
+              Nft-Exchange
+            </span>
           </Link>
+        </div>
+
+        <div>
+          <OnboardingButton />
         </div>
 
         <ul className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
