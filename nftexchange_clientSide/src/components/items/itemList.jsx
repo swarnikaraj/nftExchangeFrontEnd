@@ -68,7 +68,7 @@ export const ItemList = () => {
 
   return (
     <>
-      <div className="flex justify-center hr-btn-div">
+      <div className="flex justify-center hr-btn-div border-b">
         <div className="flex justify-center pt-2 pb-2 pl-5 pr-8 ">
           <BiBorderAll />
           <button

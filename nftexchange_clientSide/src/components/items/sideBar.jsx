@@ -25,9 +25,7 @@ export const Sidebar = () => {
 
   function getfilters() {}
   useEffect(() => {
-    fetch(
-      `http://localhost:1234/contract/byAddress/${contractAddress}`
-    )
+    fetch(`http://localhost:1234/contract/byAddress/${contractAddress}`)
       .then((res) => res.json())
       .then((res) => {
         let data = JSON.parse(res.contract[0].attributes);
@@ -35,8 +33,8 @@ export const Sidebar = () => {
         setArr(data);
       });
   }, [contractAddress]);
-  
-//address dependent
+
+  //address dependent
   useEffect(() => {
     makestring(filters);
     console.log("filters applied", filters);
@@ -98,12 +96,12 @@ export const Sidebar = () => {
   return (
     <>
       <aside className="w-full p-4 " aria-label="Sidebar ">
-        <div className="px-3 py-4 overflow-y-auto rounded bg-gray-50 dark:bg-transparent-800">
+        <div className="px-3 py-4 overflow-y-auto rounded bg-[rgb(101,93,138,0.4)] dark:bg-transparent-800">
           <ul className="space-y-2">
             <li>
               <a
                 href="#"
-                className="flex items-center p-2 text-base font-normal rounded-lg text-black-900 dark:text-black hover:bg-gray-100 dark:hover:bg-transparent-700"
+                className="flex items-center p-2 text-base font-normal rounded-lg hover:text-gray-600 hover:bg-gray-100 text-gray-200 dark:hover:bg-transparent-700 bg-[rgb(30,32,47)]"
               >
                 <MdFilterList />
                 <span className="ml-3">Filter</span>
@@ -116,7 +114,7 @@ export const Sidebar = () => {
               <li key={uuidv4()}>
                 <button
                   type="button"
-                  className="flex items-center w-full p-2 text-base font-normal transition duration-75 rounded-lg text-black-900 group hover:bg-gray-100 dark:text-black dark:hover:bg-transparent-700"
+                  className="flex items-center w-full p-2 text-base font-normal transition duration-75 rounded-lg  group hover:text-gray-600 hover:bg-gray-100 text-gray-200 dark:hover:bg-transparent-700 bg-[#1E202F]"
                   aria-controls="dropdown-opt"
                   data-collapse-toggle="dropdown-opt"
                   onClick={() => {
@@ -156,12 +154,13 @@ export const Sidebar = () => {
 
                 {clicked.includes(trait_type) && (
                   <ul className="h-40 overflow-y-scroll " id={trait_type}>
-                    <Searchbox />
-
                     {traits.map(({ trait, count }) => (
-                      <li key={uuidv4()} className="overflow-y-scroll ">
+                      <li
+                        key={uuidv4()}
+                        className="overflow-y-scroll bg-[#1E202F] text-sm pt-1 pb-1  font-thin pl-2 pr-2"
+                      >
                         <input
-                          className="float-left w-4 h-4 mt-1 mr-2 align-top transition duration-200 bg-white bg-center bg-no-repeat bg-contain border border-gray-300 rounded-sm appearance-none cursor-pointer form-check-input checked:bg-blue-600 checked:border-blue-600 focus:outline-none"
+                          className="float-left w-4 h-4 mt-1 mr-2 align-top transition duration-200 bg-transparent bg-center bg-no-repeat bg-contain border border-gray-300 rounded-sm appearance-none cursor-pointer form-check-input checked:bg-gray-600  focus:outline-none"
                           value={trait}
                           name={trait_type}
                           onChange={selectFilter}
@@ -178,13 +177,13 @@ export const Sidebar = () => {
 
                         <div className="flex justify-between">
                           <label
-                            className="inline-block text-gray-800 form-check-label"
+                            className="inline-block text-gray-200 form-check-label"
                             htmlFor="flexCheckDefault"
                           >
                             {trait}
                           </label>
                           <label
-                            className="inline-block text-gray-800 form-check-label"
+                            className="inline-block text-gray-200 form-check-label"
                             htmlFor="flexCheckDefault"
                           >
                             {count}

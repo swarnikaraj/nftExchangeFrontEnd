@@ -7,6 +7,8 @@ export function OnboardingButton() {
   const ONBOARD_TEXT = "Click here to install MetaMask!";
   const CONNECT_TEXT = "Connect";
   const CONNECTED_TEXT = "Connected";
+
+  
   const [buttonText, setButtonText] = React.useState(ONBOARD_TEXT);
   const [isDisabled, setDisabled] = React.useState(false);
   const [accounts, setAccounts] = React.useState([]);
@@ -18,7 +20,7 @@ export function OnboardingButton() {
     setAccounts(newAccounts);
   };
   
-  window.ethereum.on("accountsChanged", handleNewAccounts);
+  // window.ethereum.on("accountsChanged", handleNewAccounts);
 
   //   useEffect(() => {
   //     if (!onboarding.current) {
