@@ -9,9 +9,6 @@ import { v4 as uuidv4 } from "uuid";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
-
-
-
 export const SingleNft = () => {
   const { nft, addNft } = useContext(singleNftContext);
 
@@ -27,7 +24,6 @@ export const SingleNft = () => {
   const [buyPopUp, setBuyPopUp] = useState(false);
   const [loadingHistory, setLoadingHistory] = useState(true);
   const [his, setHis] = useState([]);
-
 
   useEffect(() => {
     console.log(address, index);
@@ -144,7 +140,7 @@ export const SingleNft = () => {
               </div>
 
               <div className="flex flex-col w-full gap-4 sm:w-96 md:w-8/12 lg:w-1/2 lg:flex-row lg:gap-8 sm:gap-6">
-                <div className="flex items-center justify-center w-full bg-transparent lg:w-full shadow-[0_80px_60px_-15px_rgba(101,92,138,0.3)]">
+                <div className="flex items-center justify-center w-full bg-transparent lg:w-full shadow-2xl shadow-rgba(101,92,138,0.4) ">
                   {image && <img src={image} alt="Nft image" className="" />}
                 </div>
               </div>

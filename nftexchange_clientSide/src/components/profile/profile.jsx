@@ -22,24 +22,20 @@ export const Profile = () => {
 
   useEffect(() => {
     console.log(address, "i am here address");
-     addContractAddress(address)
+    addContractAddress(address);
 
-     
     fetch(`https://api.opensea.io/api/v1/asset_contract/${address}`)
       .then((d) => d.json())
       .then((res) => setProf(res));
-
-   
-    
   }, [address]);
 
   return (
     <>
       <div>
         {/* banner start */}
-        <div className="banner">
+        {/* <div className="banner">
           <img src={banner} alt="Image alt text" />
-        </div>
+        </div> */}
 
         {/* banner ends */}
 
@@ -58,36 +54,41 @@ export const Profile = () => {
           <span>Created by</span>{" "}
           <span className="text-sky-400">{prof.name}</span>
           {/* cards start */}
-          <div className=" grid grid-cols-4 content-center cards ">
-            <div className="border pt-5 pb-5 pl-10 pr-10">
-              <h1 className="text-2xl font-bold">5.4K</h1>
-              <p>items</p>
+          <div className=" hidden lg:grid lg:grid-cols-4 content-center cards  ">
+            <div className=" m-3 pt-5 pb-5 pl-10 pr-10 shadow-lg shadow-[rgb(0,0,0,0.4)]  bg-transparent">
+              <h1 className="lg:text-2xl font-bold text-sm  ">
+                5.4K
+              </h1>
+              <p className="lg:text-lg font-bold text-xs ">
+                items
+              </p>
             </div>
 
-            <div className="border pt-5 pb-5 pl-10 pr-10">
-              <h1 className="text-2xl font-bold">
-                {" "}
+            <div className=" m-3 pt-5 pb-5 pl-10 pr-10 shadow-lg shadow-[rgb(0,0,0,0.4)]  bg-transparent">
+              <h1 className="lg:text-2xl font-bold text-sm">
                 {(prof.owner / 1000).toFixed(2) + "K"}
               </h1>
-              <p>owners</p>
+              <p className="lg:text-lg font-bold text-xs ">owners</p>
             </div>
 
-            <div className="border pt-5 pb-5 pl-10 pr-10">
+            <div className=" m-3 pt-5 pb-5 pl-10 pr-10 shadow-lg shadow-[rgb(0,0,0,0.4)]  bg-transparent">
               <div className="flex justify-center items-center">
                 <FaEthereum />
-                <h1 className="text-2xl font-bold pl-2">81.3</h1>
+                <h1 className="lg:text-2xl font-bold text-sm ">81.3</h1>
               </div>
-              <p>floor price</p>
+              <p className="lg:text-lg font-bold text-xs ">floor price</p>
             </div>
 
-            <div className="border pt-5 pb-5 pl-10 pr-10">
-              <h1 className="text-2xl font-bold">4.5K</h1>
-              <p>volume traded</p>
+            <div className=" m-3 pt-5 pb-5 pl-10 pr-10 shadow-lg shadow-[rgb(0,0,0,0.4)]  bg-transparent">
+              <h1 className="lg:text-2xl font-bold text-sm ">4.5K</h1>
+              <p className="lg:text-lg font-bold text-xs ">volume traded</p>
             </div>
           </div>
           {/*  end cards */}
-          <p className={class_p}>{prof.description}</p>
-          <button className="w-40 bg-gray-100 rounded-sm flex justify-center pl-8 pr-8">
+          <p className=" hidden lg:flex  justify-items-center text-justify">
+            {prof.description}
+          </p>
+          <button className="w-40 bg-transparent rounded-sm flex justify-center pl-8 pr-8">
             <FaAngleUp onClick={() => setClicked((p) => !p)} />
           </button>
         </div>
