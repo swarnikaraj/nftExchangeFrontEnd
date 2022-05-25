@@ -6,13 +6,10 @@ import { BackgroundAnimation } from "./Animation";
 import { Btn1 } from "./btn1";
 import { Btn2 } from "./btn2";
 export const Banner1 = (props) => {
- 
-
   const commonStyles =
     "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] font-semibold flex justify-center items-center border-[8px] text-gradient2 border-900 text-sm white-glassmorphism ";
   return (
     <>
-     
       <div className="h-40 -mt-20">
         <BackgroundAnimation />
       </div>
@@ -26,10 +23,10 @@ export const Banner1 = (props) => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. A, labore.
           </h1>
 
-          <p className="p-2">
+          {/* <p className="p-2">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
             quaerat!
-          </p>
+          </p> */}
           <div>
             <Btn2 />
           </div>
