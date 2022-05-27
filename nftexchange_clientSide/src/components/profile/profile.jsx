@@ -31,7 +31,7 @@ export const Profile = () => {
 
   return (
     <>
-      <div>
+      <div className="mt-12">
         {/* banner start */}
         {/* <div className="banner">
           <img src={banner} alt="Image alt text" />
@@ -56,12 +56,8 @@ export const Profile = () => {
           {/* cards start */}
           <div className=" hidden lg:grid lg:grid-cols-4 content-center cards  ">
             <div className=" m-3 pt-5 pb-5 pl-10 pr-10 shadow-lg shadow-[rgb(0,0,0,0.4)]  bg-transparent">
-              <h1 className="lg:text-2xl font-bold text-sm  ">
-                5.4K
-              </h1>
-              <p className="lg:text-lg font-bold text-xs ">
-                items
-              </p>
+              <h1 className="lg:text-2xl font-bold text-sm  ">5.4K</h1>
+              <p className="lg:text-lg font-bold text-xs ">items</p>
             </div>
 
             <div className=" m-3 pt-5 pb-5 pl-10 pr-10 shadow-lg shadow-[rgb(0,0,0,0.4)]  bg-transparent">

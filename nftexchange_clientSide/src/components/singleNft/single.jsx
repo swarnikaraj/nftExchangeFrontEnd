@@ -4,6 +4,7 @@ import { FaEthereum } from "react-icons/fa";
 import { singleNftContext } from "../../contexts/singleNft";
 import React, { useState } from "react";
 import { profileContext } from "../../contexts/profileContext";
+import { metaAccountContext } from "../../contexts/metaAccountcontext";
 import { Loader } from "../../styles/loader";
 import { v4 as uuidv4 } from "uuid";
 import { useParams } from "react-router";
@@ -13,7 +14,7 @@ export const SingleNft = () => {
   const { nft, addNft } = useContext(singleNftContext);
 
   const { address, index } = useParams();
-
+ const {metaAddress,addMetaAddress}=useContext(metaAccountContext)
   const [mynft, setMynft] = useState({});
   const [image, setImage] = useState("");
   const [des, setDes] = useState("");
@@ -24,6 +25,7 @@ export const SingleNft = () => {
   const [buyPopUp, setBuyPopUp] = useState(false);
   const [loadingHistory, setLoadingHistory] = useState(true);
   const [his, setHis] = useState([]);
+  const [owner,setOwner]=useState("")
 
   useEffect(() => {
     console.log(address, index);
@@ -33,6 +35,8 @@ export const SingleNft = () => {
       .then((res) => {
         console.log(res, "here i am");
         setMynft(res.nft);
+        setOwner(res.nft.owner_of);
+
         let t = JSON.parse(res.nft.metadata);
         // console.log(t, "des hu mai");
         setDes(t.description);
@@ -116,7 +120,17 @@ export const SingleNft = () => {
 
                 {des && <p>{des}</p>}
 
-                {attributes.length > 0 && (
+            { metaAddress===owner && attributes.length > 0 && (<button
+                    onClick={() => {
+                      alert("Sell pop up")
+                    }}
+                    className="w-full py-5 mt-6 text-base font-medium leading-4 text-white bg-gray-800 focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 lg:mt-10"
+                  >
+                    Sell
+                  </button>)}
+
+             <>
+                {metaAddress!==owner && attributes.length > 0 && (
                   <button
                     onClick={() => {
                       setBuyPopUp(true);
@@ -127,7 +141,7 @@ export const SingleNft = () => {
                   </button>
                 )}
 
-                {attributes.length > 0 && (
+                {metaAddress!==owner && attributes.length > 0 && (
                   <button
                     onClick={() => {
                       setBidPopUp(true);
@@ -137,6 +151,9 @@ export const SingleNft = () => {
                     Bid
                   </button>
                 )}
+
+</>
+
               </div>
 
               <div className="flex flex-col w-full gap-4 sm:w-96 md:w-8/12 lg:w-1/2 lg:flex-row lg:gap-8 sm:gap-6">

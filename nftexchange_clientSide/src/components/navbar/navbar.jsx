@@ -89,6 +89,10 @@ export const Nav = () => {
             )}
           </div>
         </nav>
+        <nav className="w-full flex md:justify-center justify-between items-center py-10">
+
+        <Searchbox />
+       </nav>
         {address && <MetaMaskAvatar account={address[0]} />}
       </>
     );

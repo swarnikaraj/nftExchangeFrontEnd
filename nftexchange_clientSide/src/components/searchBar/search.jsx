@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { contractContext } from "../../contexts/contractsContext";
 import { SearchResult } from "./searchResult";
 import { NftContextProvider } from "../../contexts/contractsContext";
+import { Link } from "react-router-dom";
 
 export const Searchbox = () => {
   const [text, setText] = useState("");
@@ -44,7 +45,7 @@ export const Searchbox = () => {
 
   return (
     <>
-      <div className="border w-1/2 mx-auto ">
+      <div className="border w-1/2 mx-auto absolute z-50 items-center">
         <input
           placeholder="Search Items, collections and accounts"
           type="text"
@@ -56,6 +57,7 @@ export const Searchbox = () => {
         {isOpen && (
           <div className=" text-gray-200 sticky max-h-40 h-20">
             {result?.map(({ _id, address, totalSupply, name }) => (
+              <Link to={`/collection/${address}`} >
               <div
                 className="flex border px-4 py-2 mt-2"
                 onClick={() => {
@@ -70,6 +72,9 @@ export const Searchbox = () => {
                 />
                 <div>{name}</div>
               </div>
+
+              </Link>
+
             ))}
           </div>
         )}
