@@ -22,12 +22,10 @@ export const Nav = () => {
   {
     const [toggleMenu, setToggleMenu] = useState(false);
     const { metaAddress, addMetaAddress } = useContext(metaAccountContext);
-    const [acc, setAcc] = useState([]);
-    const address = JSON.parse(localStorage.getItem("userAccounts"));
 
     useEffect(() => {
-      console.log(address, "mai navbar me baitha hu");
-    }, [address]);
+      console.log(metaAddress, "mai navbar me baitha hu");
+    }, [metaAddress]);
 
     return (
       <>
@@ -90,10 +88,9 @@ export const Nav = () => {
           </div>
         </nav>
         <nav className="w-full flex md:justify-center justify-between items-center py-10">
-
-        <Searchbox />
-       </nav>
-        {address && <MetaMaskAvatar account={address[0]} />}
+          <Searchbox />
+        </nav>
+        {metaAddress.length > 0 && <MetaMaskAvatar address={metaAddress[0]}/>}
       </>
     );
   }

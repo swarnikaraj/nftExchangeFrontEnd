@@ -1,5 +1,5 @@
 import MetaMaskOnboarding from "@metamask/onboarding";
-import React from "react";
+import React, { useEffect } from "react";
 import { metaAccountContext } from "../../contexts/metaAccountcontext";
 import { useContext } from "react";
 const ONBOARD_TEXT = "Install MetaMask!";
@@ -8,6 +8,7 @@ const CONNECTED_TEXT = "Connected";
 
 export function OnboardingButton() {
   const address = JSON.parse(localStorage.getItem("userAccounts"));
+  const localState = localStorage.getItem("state");
   const [buttonText, setButtonText] = React.useState(ONBOARD_TEXT);
   const { metaAddress, addMetaAddress } = useContext(metaAccountContext);
 
@@ -15,11 +16,15 @@ export function OnboardingButton() {
   const [accounts, setAccounts] = React.useState([]);
   const onboarding = React.useRef();
 
+  //   useEffect(() => {
+  //     setButtonText(localState);
+
+  //   }, [address, localState]);
+
   function handleNewAccounts(newAccounts) {
     setAccounts(newAccounts);
-    localStorage.setItem("userAccounts", JSON.stringify(newAccounts));
-    localStorage.setItem("state", CONNECTED_TEXT);
   }
+
   if (onboarding.current) {
     window.ethereum.on("accountsChanged", handleNewAccounts);
   }
@@ -27,42 +32,42 @@ export function OnboardingButton() {
     if (!onboarding.current) {
       onboarding.current = new MetaMaskOnboarding();
     }
+
+    checkIfWalletIsConnnected();
   }, []);
+
+  
+  const checkIfWalletIsConnnected = async () => {
+    try {
+      if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+        const accounts = await window.ethereum.request({
+          method: "eth_accounts",
+        });
+      }
+      if (accounts.length) {
+        addMetaAddress(accounts);
+        onboarding.current.stopOnboarding();
+      }
+    } catch (error) {
+      console.log(error);
+      throw new Error("No ethereum object");
+    }
+  };
 
   React.useEffect(() => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
       if (accounts.length > 0) {
-        localStorage.setItem("userAccounts", JSON.stringify(accounts));
-        localStorage.setItem("state", CONNECTED_TEXT);
-
-        setButtonText(localStorage.getItem("state"));
+        setButtonText(CONNECTED_TEXT);
         setDisabled(true);
-        addMetaAddress(JSON.parse(localStorage.getItem("userAccounts")));
+        addMetaAddress(accounts);
         onboarding.current.stopOnboarding();
       } else {
-        localStorage.setItem("state", CONNECT_TEXT);
-        localStorage.setItem("userAccounts", null);
-        addMetaAddress(JSON.parse(localStorage.getItem("userAccounts")));
-        setButtonText(localStorage.getItem("state"));
+        addMetaAddress(accounts);
+        setButtonText(CONNECT_TEXT);
         setDisabled(false);
       }
     }
   }, [accounts]);
-
-  //   React.useEffect(() => {
-  //     function handleNewAccounts(newAccounts) {
-  //       setAccounts(newAccounts);
-  //     }
-  //     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
-  //       window.ethereum
-  //         .request({ method: "eth_requestAccounts" })
-  //         .then(handleNewAccounts);
-  //       window.ethereum.on("accountsChanged", handleNewAccounts);
-  //       return () => {
-  //         window.ethereum.off("accountsChanged", handleNewAccounts);
-  //       };
-  //     }
-  //   }, []);
 
   const onClick = () => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
@@ -70,15 +75,13 @@ export function OnboardingButton() {
         .request({ method: "eth_requestAccounts" })
         .then((newAccounts) => {
           setAccounts(newAccounts);
-          localStorage.setItem("userAccounts", JSON.stringify(newAccounts));
-          localStorage.setItem("state", CONNECTED_TEXT);
-          setButtonText(localStorage.getItem("state"));
-          addMetaAddress(localStorage.getItem("userAccounts"));
+          console.log(accounts, "idsnsjd");
         });
     } else {
       onboarding.current.startOnboarding();
     }
   };
+
   return (
     <button disabled={isDisabled} onClick={onClick}>
       {buttonText}

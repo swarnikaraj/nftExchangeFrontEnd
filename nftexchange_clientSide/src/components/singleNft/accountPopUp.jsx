@@ -1,37 +1,12 @@
-// import React from "react";
-// export function AccountPop({ showPopover, dta }) {
-//   return (
-//     <>
-//       <div
-//         className="container
+import { BsThreeDotsVertical } from "react-icons/bs";
 
-//       flex flex-col absolute top-0 right-0
-//       bg-white text-black font-normal
-//       "
-//       >
-//         {dta}
-//       </div>
-//     </>
-//   );
-// }
+import { useEffect, useRef, useState, useContext } from "react";
+import { metaAccountContext } from "../../contexts/metaAccountcontext";
 
-import { useEffect, useRef, useState } from "react";
-import jazzicon from "@metamask/jazzicon";
-
-export const MetaMaskAvatar = ({ account }) => {
-  const [acc, setAcc] = useState("");
-
-  useEffect(() => {
-    if (account) {
-      setAcc(account.slice(2, 14));
-    }
-
-    // console.log(avatarRef);
-  }, [account]);
-
+export const MetaMaskAvatar = ({ address }) => {
   return (
     <>
-      <div className="flex p-2 absolute top-2 right-2 bg-white  max-h-10 w-60 rounded-lg  ">
+      <div className="flex whitespace-pre-line p-2 absolute top-2 right-2 bg-white text-black max-h-10 w-60 rounded-lg mx-auto justify-between ">
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -170,7 +145,18 @@ export const MetaMaskAvatar = ({ account }) => {
           </svg>
         </div>
 
-        <div className="text-black ml-2">{acc} </div>
+        <div className="text-black ">
+          {address.slice(2, 14) || "No Accounts"}
+        </div>
+
+        {/* <BsThreeDotsVertical onClick={openManualOption} />
+
+        {toggle && (
+          <div className="flex" onClick={disconnectManual}>
+            {" "}
+            Disconnect
+          </div>
+        )} */}
       </div>
     </>
   );
