@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { metaAccountContext } from "../../contexts/metaAccountcontext";
 
 export const Account = () => {
-  const address = JSON.parse(localStorage.getItem("userAccounts"));
   const [userTrait, setUserTrait] = useState({});
-
+  const { metaAddress, addMetaAddress } = useContext(metaAccountContext);
   useEffect(() => {
-    if (address) {
-      fetch(`http://localhost:1234/profile/${address}`)
+    if (metaAddress) {
+      fetch(`http://localhost:1234/profile/${metaAddress}`)
         .then((res) => res.json())
         .then((res) => {
           setUserTrait(res);
 
-          console.log(userTrait);
+          console.log(res);
         });
     }
-  }, [address]);
+  }, [metaAddress]);
 
   return (
     <>

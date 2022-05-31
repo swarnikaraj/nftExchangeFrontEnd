@@ -16,11 +16,6 @@ export function OnboardingButton() {
   const [accounts, setAccounts] = React.useState([]);
   const onboarding = React.useRef();
 
-  //   useEffect(() => {
-  //     setButtonText(localState);
-
-  //   }, [address, localState]);
-
   function handleNewAccounts(newAccounts) {
     setAccounts(newAccounts);
   }
@@ -36,17 +31,35 @@ export function OnboardingButton() {
     checkIfWalletIsConnnected();
   }, []);
 
-  
+  // React.useEffect(() => {
+  //   if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+  //     window.ethereum
+  //       .request({ method: "eth_requestAccounts" })
+  //       .then((newAccounts) => {
+  //         setAccounts(accounts);
+  //         onboarding.current.stopOnboarding();
+  //       });
+  //   }
+  // }, []);
+
   const checkIfWalletIsConnnected = async () => {
     try {
+      console.log("i am checkif wallet");
       if (MetaMaskOnboarding.isMetaMaskInstalled()) {
         const accounts = await window.ethereum.request({
           method: "eth_accounts",
         });
-      }
-      if (accounts.length) {
-        addMetaAddress(accounts);
-        onboarding.current.stopOnboarding();
+
+        if (accounts.length > 0) {
+          setButtonText(CONNECTED_TEXT);
+          setDisabled(true);
+          addMetaAddress(accounts);
+          onboarding.current.stopOnboarding();
+        } else {
+          addMetaAddress(accounts);
+          setButtonText(CONNECT_TEXT);
+          setDisabled(false);
+        }
       }
     } catch (error) {
       console.log(error);

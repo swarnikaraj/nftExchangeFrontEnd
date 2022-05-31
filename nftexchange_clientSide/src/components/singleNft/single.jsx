@@ -14,7 +14,7 @@ export const SingleNft = () => {
   const { nft, addNft } = useContext(singleNftContext);
 
   const { address, index } = useParams();
- const {metaAddress,addMetaAddress}=useContext(metaAccountContext)
+  const {metaAddress,addMetaAddress}=useContext(metaAccountContext)
   const [mynft, setMynft] = useState({});
   const [image, setImage] = useState("");
   const [des, setDes] = useState("");
