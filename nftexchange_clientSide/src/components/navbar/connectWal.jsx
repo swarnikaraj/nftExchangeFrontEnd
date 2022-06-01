@@ -7,8 +7,7 @@ const CONNECT_TEXT = "Connect";
 const CONNECTED_TEXT = "Connected";
 
 export function OnboardingButton() {
-  const address = JSON.parse(localStorage.getItem("userAccounts"));
-  const localState = localStorage.getItem("state");
+  
   const [buttonText, setButtonText] = React.useState(ONBOARD_TEXT);
   const { metaAddress, addMetaAddress } = useContext(metaAccountContext);
 

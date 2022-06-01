@@ -1,8 +1,7 @@
-import { MdFavoriteBorder } from "react-icons/md";
+
 import { useState, useContext, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Dropdown } from "../profile/dropdown";
-import { Searchbox } from "../searchBar/search";
+
 import { FaEthereum } from "react-icons/fa";
 import { contractContext } from "../../contexts/contractsContext";
 import { singleNftContext } from "../../contexts/singleNft";
