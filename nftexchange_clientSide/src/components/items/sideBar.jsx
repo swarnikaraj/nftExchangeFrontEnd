@@ -160,7 +160,7 @@ export const Sidebar = () => {
                         className="overflow-y-scroll bg-[#1E202F] text-sm pt-1 pb-1  font-thin pl-2 pr-2"
                       >
                         <input
-                          className="float-left w-4 h-4 mt-1 mr-2 align-top transition duration-200 bg-transparent bg-center bg-no-repeat bg-contain border border-gray-300 rounded-sm appearance-none cursor-pointer form-check-input checked:bg-gray-600  focus:outline-none"
+                          className="float-left w-4 h-4 mt-1 mr-2 align-top transition duration-200  bg-center bg-no-repeat bg-contain border  border-gray-300 rounded-sm appearance-none cursor-pointer form-check-input checked:bg-gray-100  focus:outline-none"
                           value={trait}
                           name={trait_type}
                           onChange={selectFilter}
