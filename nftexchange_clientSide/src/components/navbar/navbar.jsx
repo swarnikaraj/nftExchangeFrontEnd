@@ -43,9 +43,12 @@ export const Nav = () => {
               <NavbarItem key={item + index} title={item} />
             ))}
 
-            <li className="bg-[#655D8A] py-2 px-14 mx-10 rounded-full hover:bg-[#7897AB] cursor-pointer">
-              <MdOutlineAccountCircle />
-            </li>
+            <Link to={"/account"}>
+              {" "}
+              <li className="bg-[#655D8A] py-2 px-14 mx-10 rounded-full hover:bg-[#7897AB] cursor-pointer">
+                <MdOutlineAccountCircle />
+              </li>
+            </Link>
             <li className="bg-[#655D8A] py-2 px-14 mx-10 rounded-full cursor-pointer hover:bg-[#7897AB] fflex justify-center items-center">
               <OnboardingButton />
             </li>
@@ -90,7 +93,7 @@ export const Nav = () => {
         <nav className="w-full flex md:justify-center justify-between items-center py-10">
           <Searchbox />
         </nav>
-        {metaAddress.length > 0 && <MetaMaskAvatar address={metaAddress[0]}/>}
+        {metaAddress.length > 0 && <MetaMaskAvatar address={metaAddress[0]} />}
       </>
     );
   }

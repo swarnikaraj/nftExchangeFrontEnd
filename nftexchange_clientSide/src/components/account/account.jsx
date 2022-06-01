@@ -42,16 +42,24 @@ export const Account = () => {
     setCollect(false);
   }
 
+  async function getProfile(metaAddress) {
+    const res = await fetch(`http://localhost:1234/profile/${metaAddress}`);
+    const data = await res.json();
+
+    console.log(data);
+  }
   useEffect(() => {
-    if (metaAddress) {
-      fetch(`http://localhost:1234/profile/${metaAddress[0]}`)
-        .then((res) => res.json())
-        .then((res) => {
-          console.log(metaAddress, "Here I am");
-          console.log(res);
-        });
-    }
-  }, [metaAddress]);
+    //   fetch(`http://localhost:1234/profile/${metaAddress[0]}`)
+    //     .then((res) => res.json())
+    //     .then((res) => {
+    //       console.log(metaAddress, "Here I am");
+    //       console.log(res);
+    //     });
+
+    getProfile(metaAddress[0]);
+
+    console.log("hello I am running bhai");
+  }, []);
 
   return (
     <>
