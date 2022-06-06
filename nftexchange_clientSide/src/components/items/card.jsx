@@ -5,7 +5,7 @@ import { FaEthereum } from "react-icons/fa";
 import { contractContext } from "../../contexts/contractsContext";
 import { singleNftContext } from "../../contexts/singleNft";
 import { filterContext } from "../../contexts/filterTrait";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { Loader } from "../../styles/loader";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
@@ -79,7 +79,6 @@ export const Cards = ({ rows }) => {
         onScroll={handleScroll}
       >
         <div className="w-full ">
-         
           <div className="ml-5 mr-5 w-8/10 ">
             <div className="container px-4 mx-auto   md:px-3">
               <div className="flex flex-wrap -mx-1 lg:-mx-4">
@@ -121,8 +120,11 @@ export const Cards = ({ rows }) => {
               </div>
             </div>
           </div>
-        
         </div>
+
+        <Loader />
+
+        
       </div>
     </>
   );
