@@ -29,6 +29,8 @@ export const Cards = ({ rows }) => {
   }, [contractAddress, filterString, page]);
 
   async function fetchAndSetNft() {
+
+    try{
     let url = `http://127.0.0.1:1234/nft/${contractAddress}?`;
 
     console.log(filterString, "filterd string mai bs yhi pr hu");
@@ -46,38 +48,29 @@ export const Cards = ({ rows }) => {
 
     setTotalResult(parsedData.totalResults);
     setLoading(false);
+    }
+    catch(e){
+      setLoading(true);
+
+    }
   }
 
-  async function fetchMoreData() {
-    setPage(page + 1);
-
-    let url = `http://127.0.0.1:1234/nft/${contractAddress}`;
-
-    console.log(filterString, "filterd string mai bs yhi pr hu");
-
-    let urlFinal = filterString
-      ? url + `?${filterString}` + `&page=${page}&size=15`
-      : url + `&page=${page}&size=15`;
-    setLoading(true);
-    console.log(urlFinal, "i am final");
-    const data = await fetch(urlFinal);
-    const parsedData = await data.json();
-
-    setNfts(nfts.concat(parsedData.nft));
-
-    setTotalResult(parsedData.totalResults);
-    setLoading(false);
-  }
+  
 
   function handleScroll() {
     setPage(page + 1);
   }
   return (
     <>
+
+ 
+     
       <div
         className=" lg:w-3/4  md:w-3/4 sm:w-full  max-h-screen overflow-y-scroll "
         onScroll={handleScroll}
       >
+
+{loading? <Loader/> :
         <div className="w-full ">
           <div className="ml-5 mr-5 w-8/10 ">
             <div className="container px-4 mx-auto   md:px-3">
@@ -117,15 +110,16 @@ export const Cards = ({ rows }) => {
                     </Link>
                   </div>
                 ))}
+               
               </div>
             </div>
           </div>
         </div>
 
-        <Loader />
-
-        
+                }
       </div>
+
+                
     </>
   );
 };
