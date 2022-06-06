@@ -66,6 +66,8 @@ export const ItemList = () => {
   //   }
   // };
 
+  
+
   return (
     <>
       <div className="flex justify-center hr-btn-div border-b">
@@ -92,12 +94,18 @@ export const ItemList = () => {
       <div className="flex flex-wrap justify-center ml-0 mr-0 ">
         {items && (
           <>
+         
             <div className="  lg:w-1/5 md:w-1/5 sm:w-full lg:max-h-screen overflow-y-scroll sm:max-10 md:max-10">
               <Sidebar />
             </div>
-            <div className=" lg:w-3/4  md:w-3/4 sm:w-full  max-h-screen overflow-y-scroll ">
+           
+           {/* div with parent */}
+            {/* <div
+              className=" lg:w-3/4  md:w-3/4 sm:w-full  max-h-screen overflow-y-scroll "
+              onScroll={handleScroll}
+            > */}
               <Cards dataArr={nfts} />
-            </div>
+            {/* </div> */}
           </>
         )}
 

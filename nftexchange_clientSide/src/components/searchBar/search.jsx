@@ -45,7 +45,7 @@ export const Searchbox = () => {
 
   return (
     <>
-      <div className="border w-1/2 mx-auto absolute z-50 items-center">
+      <div className=" w-1/2 mx-auto absolute z-50 items-center">
         <input
           placeholder="Search Items, collections and accounts"
           type="text"
@@ -57,24 +57,23 @@ export const Searchbox = () => {
         {isOpen && (
           <div className=" text-gray-200 sticky max-h-40 h-20">
             {result?.map(({ _id, address, totalSupply, name }) => (
-              <Link to={`/collection/${address}`} >
-              <div
-                className="flex border px-4 py-2 mt-2"
-                onClick={() => {
-                  addContractAddress(address);
-                  setIsOpen(false);
-                }}
-                key={_id}
-              >
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfFsim7mJetzNBK672yN0qjry6QJot2drW_w&usqp=CAU"
-                  className="w-8 h-8 rounded-full"
-                />
-                <div>{name}</div>
-              </div>
-
+              <Link to={`/collection/${address}`}>
+                <div
+                  className="flex rounded-lg px-4 py-4 mt-2 bg-[rgb(101,92,138,0.4)] "
+                  onClick={() => {
+                    addContractAddress(address);
+                    setIsOpen(false);
+                    setText("");
+                  }}
+                  key={_id}
+                >
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfFsim7mJetzNBK672yN0qjry6QJot2drW_w&usqp=CAU"
+                    className="w-8 h-8 rounded-full mr-1"
+                  />
+                  <div className="ml-2 text-black font-bold">{name}</div>
+                </div>
               </Link>
-
             ))}
           </div>
         )}

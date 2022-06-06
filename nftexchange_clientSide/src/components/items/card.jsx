@@ -1,4 +1,3 @@
-
 import { useState, useContext, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -42,7 +41,7 @@ export const Cards = ({ rows }) => {
     const data = await fetch(urlFinal);
     const parsedData = await data.json();
     console.log(37, parsedData);
-    setNfts(parsedData.nft);
+    setNfts(nfts.concat(parsedData.nft));
     console.log(nfts, "39");
 
     setTotalResult(parsedData.totalResults);
@@ -70,58 +69,60 @@ export const Cards = ({ rows }) => {
     setLoading(false);
   }
 
+  function handleScroll() {
+    setPage(page + 1);
+  }
   return (
     <>
-      <div className="w-full ">
-        {/* <InfiniteScroll
-          dataLength={nfts.length}
-          next={fetchMoreData}
-          hasMore={nfts.length !== totalResults}
-          loader={<h4 style={{ margin: "10px", color: "blue" }}>Loading...</h4>}
-          scrollableTarget="scrollableDiv"
-        > */}
-        <div className="ml-5 mr-5 w-8/10 ">
-          <div className="container px-4 mx-auto   md:px-3">
-            <div className="flex flex-wrap -mx-1 lg:-mx-4">
-              {nfts?.map((data) => (
-                <div
-                  className="w-full  px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4  dark:bg-transparent-800"
-                  key={uuidv4()}
-                >
-                  <Link to={`/collection/${data.address}/${data.index}`}>
-                    <article className="overflow-hidden rounded-lg shadow-lg shadow-[rgb(101,93,138,0.4)] cursor-pointer">
-                      <img
-                        alt="Placeholder"
-                        className="block w-full h-auto"
-                        src={data.imageURI}
-                      />
+      <div
+        className=" lg:w-3/4  md:w-3/4 sm:w-full  max-h-screen overflow-y-scroll "
+        onScroll={handleScroll}
+      >
+        <div className="w-full ">
+         
+          <div className="ml-5 mr-5 w-8/10 ">
+            <div className="container px-4 mx-auto   md:px-3">
+              <div className="flex flex-wrap -mx-1 lg:-mx-4">
+                {nfts?.map((data) => (
+                  <div
+                    className="w-full  px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4  dark:bg-transparent-800"
+                    key={uuidv4()}
+                  >
+                    <Link to={`/collection/${data.address}/${data.index}`}>
+                      <article className="overflow-hidden rounded-lg shadow-lg shadow-[rgb(101,93,138,0.4)] cursor-pointer">
+                        <img
+                          alt="Placeholder"
+                          className="block w-full h-auto"
+                          src={data.imageURI}
+                        />
 
-                      <div className="flex items-center justify-between px-4 pt-2 leading-tight ">
-                        <h1 className="text-lg text-gray-200 no-underline hover:underline">
-                          {data.name}
-                        </h1>
+                        <div className="flex items-center justify-between px-4 pt-2 leading-tight ">
+                          <h1 className="text-lg text-gray-200 no-underline hover:underline">
+                            {data.name}
+                          </h1>
 
-                        <div className="flex items-center text-sm text-grey-darker">
-                          <FaEthereum />
-                          <span className="ml-1">0.933</span>
+                          <div className="flex items-center text-sm text-grey-darker">
+                            <FaEthereum />
+                            <span className="ml-1">0.933</span>
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex items-center justify-between px-4 py-1 leading-none">
-                        <p className="text-sm ">
-                          {data.index}
-                          {/* {JSON.parse(data.tokenURI).name} */}
-                        </p>
+                        <div className="flex items-center justify-between px-4 py-1 leading-none">
+                          <p className="text-sm ">
+                            {data.index}
+                            {/* {JSON.parse(data.tokenURI).name} */}
+                          </p>
 
-                        <span className="text-sm">45</span>
-                      </div>
-                    </article>
-                  </Link>
-                </div>
-              ))}
+                          <span className="text-sm">45</span>
+                        </div>
+                      </article>
+                    </Link>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
+        
         </div>
-        {/* </InfiniteScroll> */}
       </div>
     </>
   );
