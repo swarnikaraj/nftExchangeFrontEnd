@@ -8,7 +8,7 @@ import { CollectedCard } from "./CollectedCards";
 
 export const Account = () => {
   const [userTrait, setUserTrait] = useState({});
-  const [coll, setColl]=useState([])
+  const [coll, setColl] = useState([]);
   const { metaAddress, addMetaAddress } = useContext(metaAccountContext);
   const [showCollect, setCollect] = useState(true);
   const [showCreated, setShowCreated] = useState(false);
@@ -44,10 +44,14 @@ export const Account = () => {
   }
 
   async function getProfile(metaAddress) {
-    const res = await fetch(`http://localhost:1234/profile/${metaAddress}`);
-    const data = await res.json();
-    setColl(data.output.result)
-    console.log(data.output.result);
+    try {
+      const res = await fetch(`http://localhost:1234/profile/${metaAddress}`);
+      const data = await res.json();
+      setColl(data.output.result);
+      console.log(data.output.result);
+    } catch (e) {
+      console.log(e, "I m the error");
+    }
   }
   useEffect(() => {
     //   fetch(`http://localhost:1234/profile/${metaAddress[0]}`)
@@ -146,7 +150,7 @@ export const Account = () => {
                   Collect sidebar
                 </div>
                 <div className=" lg:w-3/4  md:w-3/4 sm:w-full  max-h-screen overflow-y-scroll ">
-                   <CollectedCard collects={coll}/> 
+                  <CollectedCard collects={coll} />
                 </div>
               </>
             )}
